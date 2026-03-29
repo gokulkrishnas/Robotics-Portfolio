@@ -5,7 +5,7 @@ import SplineScene from '../SplineScene.astro';
  * SPLINE: Replace with NEXBOT export URL.
  * Scene: NEXBOT — Robot Character Concept (dark purple, "Get in touch" label)
  */
-const NEXBOT_URL = 'https://prod.spline.design/615b9422-9985-43f6-8593-d7d7bc3b0be1/scene.splinecode';
+const NEXBOT_URL = 'https://prod.spline.design/a3dNWL2bf7fxDypq/scene.splinecode';
 
 const contactLinks = [
   {
@@ -158,9 +158,9 @@ const contactLinks = [
     justify-content: center;
   }
 
-  .accent-bg-cyan   { background: rgba(56,189,248,0.08);  border: 1px solid rgba(56,189,248,0.2); }
-  .accent-bg-indigo { background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); }
-  .accent-bg-purple { background: rgba(168,85,247,0.08);  border: 1px solid rgba(168,85,247,0.2); }
+  .accent-bg-cyan   { background: rgba(0,113,227,0.06);   border: 1px solid rgba(0,113,227,0.18); }
+  .accent-bg-indigo { background: rgba(0,113,227,0.05);   border: 1px solid rgba(0,113,227,0.15); }
+  .accent-bg-purple { background: rgba(110,110,115,0.06); border: 1px solid rgba(110,110,115,0.18); }
 
   .contact-text { flex: 1; display: flex; flex-direction: column; gap: 3px; }
 
@@ -210,9 +210,9 @@ const contactLinks = [
     position: absolute;
     width: 14px;
     height: 14px;
-    border-color: var(--accent-purple);
+    border-color: var(--accent);
     border-style: solid;
-    opacity: 0.5;
+    opacity: 0.4;
   }
   .corner-tl { top: 10px; left: 10px;  border-width: 1px 0 0 1px; }
   .corner-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
@@ -235,3 +235,15 @@ const contactLinks = [
     .contact-scene { order: -1; }
   }
 </style>
+
+<script>
+  // When the Spline scene in the Contact section is ready,
+  // attach a click handler so the button in the scene triggers the email link.
+  document.getElementById('contact')?.addEventListener('spline-ready', (e: Event) => {
+    const app = (e as CustomEvent).detail?.app;
+    if (!app) return;
+    app.addEventListener('mouseDown', () => {
+      window.location.href = 'mailto:gokulkrishna30082001@gmail.com';
+    });
+  });
+</script>

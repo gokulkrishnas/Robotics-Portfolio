@@ -14,19 +14,31 @@ const navLinks = [
   <!-- Logo -->
   <a href="#home" class="nav-logo" aria-label="Home">
     <div class="logo-hex">
-      <svg class="logo-hex-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer hexagon -->
-        <polygon points="22,2 39,11.5 39,32.5 22,42 5,32.5 5,11.5"
-          stroke="url(#hexGrad)" stroke-width="1.5" fill="none"/>
-        <!-- Inner dots — circuit feel -->
-        <circle cx="22" cy="11.5" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
-        <circle cx="39" cy="22" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
-        <circle cx="22" cy="32.5" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
-        <circle cx="5" cy="22" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
+      <svg class="logo-robot-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Antenna stem -->
+        <line x1="22" y1="2" x2="22" y2="10" stroke="url(#rGrad)" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Antenna ball -->
+        <circle cx="22" cy="1.8" r="2" fill="url(#rGrad)"/>
+        <!-- Head outline -->
+        <rect x="5" y="10" width="34" height="26" rx="6" stroke="url(#rGrad)" stroke-width="1.5" fill="none"/>
+        <!-- Left eye ring -->
+        <circle cx="15.5" cy="23" r="3.5" stroke="url(#rGrad)" stroke-width="1.2" fill="none"/>
+        <!-- Right eye ring -->
+        <circle cx="28.5" cy="23" r="3.5" stroke="url(#rGrad)" stroke-width="1.2" fill="none"/>
+        <!-- Left eye pupil -->
+        <circle cx="15.5" cy="23" r="1.4" fill="url(#rGrad)"/>
+        <!-- Right eye pupil -->
+        <circle cx="28.5" cy="23" r="1.4" fill="url(#rGrad)"/>
+        <!-- Smile -->
+        <path d="M15 30.5 Q22 34.5 29 30.5" stroke="url(#rGrad)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <!-- Left ear -->
+        <rect x="2" y="18" width="3" height="8" rx="1.5" stroke="url(#rGrad)" stroke-width="1.2" fill="none"/>
+        <!-- Right ear -->
+        <rect x="39" y="18" width="3" height="8" rx="1.5" stroke="url(#rGrad)" stroke-width="1.2" fill="none"/>
         <defs>
-          <linearGradient id="hexGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#38bdf8"/>
-            <stop offset="100%" stop-color="#818cf8"/>
+          <linearGradient id="rGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0071e3"/>
+            <stop offset="100%" stop-color="#6e6e73"/>
           </linearGradient>
         </defs>
       </svg>
@@ -68,257 +80,166 @@ const navLinks = [
 </div>
 
 <style>
-  /* ── Navbar shell — liquid glass ───────────────────────── */
+  /* ── Navbar — Apple-style liquid glass ─────────────────── */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
     height: var(--navbar-h);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
-    /* Liquid glass */
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.06) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
-    backdrop-filter: blur(48px) saturate(1.8);
-    -webkit-backdrop-filter: blur(48px) saturate(1.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
-      0 4px 24px rgba(0, 0, 0, 0.25),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    padding: 0 40px;
+    background: rgba(245, 245, 247, 0.80);
+    backdrop-filter: saturate(200%) blur(24px);
+    -webkit-backdrop-filter: saturate(200%) blur(24px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04);
   }
 
-  /* gradient glow line at bottom */
-  nav::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 10%;
-    width: 80%;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(56,189,248,0.5),
-      rgba(129,140,248,0.5),
-      transparent
-    );
-  }
-
-  /* ── New Logo ───────────────────────────────────────────── */
+  /* ── Logo ───────────────────────────────────────────────── */
   .nav-logo {
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: transform 0.35s ease;
+    transition: transform 0.35s ease, opacity 0.2s;
+  }
+  .nav-logo:hover { transform: scale(1.04); opacity: 0.85; }
+
+  .logo-hex { width: 38px; height: 38px; flex-shrink: 0; }
+
+  .logo-robot-svg {
+    width: 100%; height: 100%;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    filter: drop-shadow(0 1px 3px rgba(0,113,227,0.18));
+  }
+  .nav-logo:hover .logo-robot-svg {
+    transform: scale(1.1) rotate(-6deg);
+    filter: drop-shadow(0 3px 8px rgba(0,113,227,0.4));
   }
 
-  .nav-logo:hover { transform: scale(1.04); }
-
-  /* Hexagon icon */
-  .logo-hex {
-    width: 36px;
-    height: 36px;
-    position: relative;
-    flex-shrink: 0;
-  }
-
-  .logo-hex-svg {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
-    filter: drop-shadow(0 0 4px rgba(56,189,248,0.3));
-  }
-
-  .nav-logo:hover .logo-hex-svg {
-    transform: rotate(60deg);
-    filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
-  }
-
-  /* Text block */
-  .logo-text-block {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-    gap: 2px;
-  }
+  .logo-text-block { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
 
   .logo-initials {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-size: 17px;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    background: linear-gradient(135deg, #38bdf8, #818cf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
   }
 
   .logo-sub {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'SF Mono', ui-monospace, monospace;
     font-size: 9px;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     color: var(--text-muted);
     text-transform: uppercase;
   }
 
-  /* ── Nav link list ──────────────────────────────────────── */
+  /* ── Nav links ──────────────────────────────────────────── */
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     list-style: none;
-    /* Perspective plane for the row of buttons */
-    transform-style: preserve-3d;
   }
 
-  /* ── Liquid Glass Nav Button ────────────────────────────── */
+  /* ── Glass nav button — light theme ────────────────────── */
   .nav-btn {
     position: relative;
-    display: inline-block;
-    padding: 7px 16px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 980px;
     cursor: pointer;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.07) 0%,
-      rgba(255, 255, 255, 0.02) 100%
-    );
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow:
-      0 2px 12px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    transition: all 0.22s ease;
+    background: rgba(0,0,0,0.025);
+    border: 1px solid rgba(0,0,0,0.05);
   }
 
-  /* Shimmer on hover */
   .nav-btn::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.08) 50%, transparent 65%);
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.75) 50%, transparent 65%);
     transform: translateX(-100%);
     transition: transform 0.5s ease;
+    pointer-events: none;
   }
   .nav-btn:hover::before { transform: translateX(100%); }
 
   .nav-btn-face {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-size: 13.5px;
+    font-weight: 400;
     color: var(--text-secondary);
     transition: color 0.2s ease;
     position: relative;
     z-index: 1;
+    letter-spacing: -0.005em;
   }
 
   .nav-btn:hover {
-    transform: translateY(-2px);
-    border-color: rgba(56, 189, 248, 0.28);
-    box-shadow:
-      0 6px 20px rgba(0, 0, 0, 0.3),
-      0 0 16px rgba(56, 189, 248, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,1);
   }
-
   .nav-btn:hover .nav-btn-face { color: var(--text-primary); }
 
-  .nav-btn:active { transform: translateY(0); }
-
-  /* Active section */
   .nav-btn.active {
-    background: linear-gradient(
-      135deg,
-      rgba(56, 189, 248, 0.12) 0%,
-      rgba(129, 140, 248, 0.06) 100%
-    );
-    border-color: rgba(56, 189, 248, 0.3);
-    box-shadow:
-      0 0 20px rgba(56, 189, 248, 0.1),
-      inset 0 1px 0 rgba(56, 189, 248, 0.2);
+    background: rgba(0,113,227,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(0,113,227,0.2);
+    box-shadow: 0 2px 8px rgba(0,113,227,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
   }
+  .nav-btn.active .nav-btn-face { color: var(--accent); font-weight: 500; }
 
-  .nav-btn.active .nav-btn-face { color: var(--accent-cyan); }
-
-  /* ── Hamburger (mobile) ─────────────────────────────────── */
+  /* ── Hamburger ──────────────────────────────────────────── */
   .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 8px;
   }
-
   .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-secondary);
-    border-radius: 2px;
+    display: block; width: 20px; height: 1.5px;
+    background: var(--text-primary); border-radius: 2px;
     transition: all 0.3s ease;
   }
-
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   /* ── Mobile drawer ──────────────────────────────────────── */
   .mobile-drawer {
     display: none;
     position: fixed;
-    top: var(--navbar-h);
-    left: 0;
-    right: 0;
+    top: var(--navbar-h); left: 0; right: 0;
     z-index: 99;
-    background: rgba(5,5,13,0.97);
-    backdrop-filter: blur(24px);
+    background: rgba(245,245,247,0.95);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    padding: 20px 32px 28px;
-    transform: translateY(-8px);
-    opacity: 0;
-    pointer-events: none;
+    padding: 16px 28px 24px;
+    transform: translateY(-8px); opacity: 0; pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-
-  .mobile-drawer.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-  }
-
-  .mobile-drawer ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-
+  .mobile-drawer.open { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .mobile-drawer ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
   .mobile-nav-link {
-    display: block;
-    padding: 12px 0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 16px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    border-bottom: 1px solid var(--border);
-    transition: color 0.2s;
+    display: block; padding: 11px 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; color: var(--text-secondary); text-decoration: none;
+    border-bottom: 1px solid var(--border); transition: color 0.2s;
   }
-
-  .mobile-nav-link:hover { color: var(--accent-cyan); }
+  .mobile-nav-link:hover { color: var(--accent); }
 
   @media (max-width: 768px) {
-    .nav-links  { display: none; }
-    .hamburger  { display: flex; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
     .mobile-drawer { display: block; }
   }
 </style>

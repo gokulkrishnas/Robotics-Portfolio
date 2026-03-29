@@ -5,7 +5,7 @@ import SplineScene from '../SplineScene.astro';
  * SPLINE: Replace with your Rox scene export URL.
  * Scene: Rox — "Initiating emotional response"
  */
-const ROX_URL = 'https://prod.spline.design/a38eafa0-2fa5-4630-983f-6940475adf5e/scene.splinecode';
+const ROX_URL = 'https://prod.spline.design/EevH1FI-Lv4yJWrA/scene.splinecode';
 
 const stats = [
   { value: '2+',  label: 'Years industry exp.' },
@@ -92,9 +92,9 @@ const stats = [
     position: absolute;
     width: 14px;
     height: 14px;
-    border-color: var(--accent-indigo);
+    border-color: var(--accent);
     border-style: solid;
-    opacity: 0.5;
+    opacity: 0.4;
   }
   .corner-tl { top: 10px; left: 10px;  border-width: 1px 0 0 1px; }
   .corner-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
@@ -134,11 +134,11 @@ const stats = [
 
   .stat-card:hover {
     border-color: var(--border-accent);
-    box-shadow: 0 0 20px var(--glow-cyan);
+    box-shadow: var(--shadow-md);
   }
 
   .stat-value {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
     font-size: 28px;
     font-weight: 700;
     letter-spacing: -0.03em;

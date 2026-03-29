@@ -7,15 +7,23 @@ import SplineScene from '../SplineScene.astro';
  * Steps: Open in Spline → Export → Web → Copy URL
  * Make sure Background is set to Transparent in scene settings.
  */
-const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode';
+const GENKUB_URL  = 'https://prod.spline.design/URNWsSjOJHXK1sUs/scene.splinecode';
+const HERO_BG_URL = 'https://prod.spline.design/8drWQPA7PfGR9fa7/scene.splinecode';
 ---
 
 <section id="home" class="section hero-section bg-grid">
-  <!-- Background glow orbs -->
+  <!-- Landing page Spline background -->
+  <div class="hero-bg-spline" id="hero-bg-wrapper" aria-hidden="true">
+    <canvas id="hero-bg-canvas" data-hero-bg={HERO_BG_URL}></canvas>
+  </div>
+  <!-- Mask the Spline watermark badge rendered inside the canvas -->
+  <div class="spline-badge-mask" aria-hidden="true"></div>
+
+  <!-- Subtle glow orbs beneath content -->
   <div class="glow-orb glow-cyan"   style="width:500px;height:500px;top:-100px;left:-100px;"></div>
   <div class="glow-orb glow-indigo" style="width:400px;height:400px;bottom:0;right:0;"></div>
 
-  <div class="container hero-inner">
+  <div class="container hero-inner" style="position:relative;z-index:1;">
     <!-- Left: Text content -->
     <div class="hero-text">
       <h1 class="hero-name reveal">
@@ -71,23 +79,9 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
       </div>
     </div>
 
-    <!-- Right: Spline scene in glass panel -->
+    <!-- Right: Robot — floats freely, no box -->
     <div class="hero-scene reveal reveal-delay-2">
-      <div class="glass-panel-accent scene-panel">
-        <!-- Corner decorations -->
-        <span class="corner corner-tl"></span>
-        <span class="corner corner-tr"></span>
-        <span class="corner corner-bl"></span>
-        <span class="corner corner-br"></span>
-
-        <!-- Status badge -->
-        <div class="scene-badge">
-          <span class="badge-dot"></span>
-          <span class="font-mono">autonomous.sys — online</span>
-        </div>
-
-        <SplineScene url={GENKUB_URL} height="420px" />
-      </div>
+      <SplineScene url={GENKUB_URL} height="520px" class="hero-robot-scene" />
     </div>
   </div>
 
@@ -145,10 +139,7 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
     letter-spacing: -0.03em;
     line-height: 1.05;
     margin-bottom: 16px;
-    background: linear-gradient(135deg, #f1f5f9 30%, var(--accent-cyan) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-primary);
   }
 
   .hero-title-row {
@@ -159,11 +150,11 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
   }
 
   .title-tag {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'SF Mono', ui-monospace, monospace;
     font-size: 13px;
-    color: var(--accent-cyan);
-    background: rgba(56,189,248,0.08);
-    border: 1px solid rgba(56,189,248,0.2);
+    color: var(--accent);
+    background: rgba(0,113,227,0.08);
+    border: 1px solid rgba(0,113,227,0.2);
     padding: 4px 12px;
     border-radius: 100px;
   }
@@ -171,7 +162,7 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
   .title-separator { color: var(--text-muted); font-size: 16px; }
 
   .title-sub {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
     font-size: 14px;
     color: var(--text-muted);
   }
@@ -185,7 +176,7 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
   }
 
   .highlight {
-    color: var(--accent-cyan);
+    color: var(--accent);
     font-weight: 500;
   }
 
@@ -207,65 +198,70 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,0,0,0.08);
     border-radius: 10px;
     color: var(--text-muted);
     text-decoration: none;
     transition: all 0.2s ease;
-    /* 3D effect matching navbar */
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1);
   }
 
   .social-link:hover {
     border-color: var(--border-accent);
-    color: var(--accent-cyan);
+    color: var(--accent);
     transform: translateY(-3px);
-    box-shadow: 4px 6px 8px rgba(0,0,0,0.5), 0 0 16px var(--glow-cyan);
+    box-shadow: 0 4px 16px rgba(0,113,227,0.15), inset 0 1px 0 rgba(255,255,255,1);
   }
 
-  /* ── Scene Panel ──────────────────────────────────────────── */
-  .hero-scene { position: relative; }
-
-  .scene-panel {
-    position: relative;
-    padding: 20px;
+  /* ── Background Spline scene ──────────────────────────────── */
+  .hero-bg-spline {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.8s ease;
     overflow: hidden;
   }
+  .hero-bg-spline.loaded { opacity: 0.28; }
+  #hero-bg-canvas { width: 100%; height: 100%; display: block; }
 
-  .scene-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    margin-bottom: 12px;
-  }
 
-  .badge-dot {
-    width: 6px;
-    height: 6px;
-    background: #22c55e;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #22c55e;
-    animation: pulse-dot 2s ease-in-out infinite;
-  }
-
-  /* Corner bracket decorations */
-  .corner {
+  /* Mask watermark badge inside bg canvas */
+  .spline-badge-mask {
     position: absolute;
-    width: 14px;
-    height: 14px;
-    border-color: var(--accent-cyan);
-    border-style: solid;
-    opacity: 0.5;
+    bottom: 0; right: 0;
+    width: 210px; height: 56px;
+    background: var(--bg-base);
+    z-index: 10;
+    pointer-events: none;
   }
-  .corner-tl { top: 10px; left: 10px;  border-width: 1px 0 0 1px; }
-  .corner-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
-  .corner-bl { bottom: 10px; left: 10px;  border-width: 0 0 1px 1px; }
-  .corner-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+  /* ── Robot scene — frameless ──────────────────────────────── */
+  /* Clip container height to hide the badge row at the bottom of the canvas */
+  .hero-scene {
+    position: relative;
+    overflow: hidden;
+    height: 458px; /* 520px canvas - 62px badge row */
+  }
+
+  :global(.hero-robot-scene) {
+    border-radius: 0 !important;
+    background: transparent;
+  }
+  :global(.hero-robot-scene canvas) {
+    border-radius: 0 !important;
+    /* Soft radial fade to blend robot edges with background */
+    -webkit-mask-image: radial-gradient(ellipse 92% 92% at 50% 46%, black 52%, transparent 100%);
+    mask-image: radial-gradient(ellipse 92% 92% at 50% 46%, black 52%, transparent 100%);
+  }
+  /* No solid mask needed — container clips badge area */
+  :global(.hero-robot-scene::after) {
+    display: none !important;
+  }
 
   /* ── Scroll hint ──────────────────────────────────────────── */
   .scroll-hint {
@@ -287,7 +283,7 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
   .scroll-line {
     width: 1px;
     height: 36px;
-    background: linear-gradient(180deg, var(--accent-cyan), transparent);
+    background: linear-gradient(180deg, var(--accent), transparent);
     animation: scroll-line-grow 2s ease-in-out infinite;
   }
 
@@ -317,3 +313,27 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
     .scroll-hint { display: none; }
   }
 </style>
+
+<script>
+  async function initHeroBg() {
+    const canvas = document.getElementById('hero-bg-canvas') as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const url = canvas.dataset.heroBg;
+    if (!url) return;
+    const wrapper = document.getElementById('hero-bg-wrapper');
+    try {
+      const { Application } = await import('@splinetool/runtime');
+      const app = new Application(canvas);
+      await app.load(url);
+      wrapper?.classList.add('loaded');
+    } catch {
+      // Silently fall back to plain background
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroBg);
+  } else {
+    initHeroBg();
+  }
+</script>

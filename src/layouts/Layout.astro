@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import BackgroundScene from '../components/BackgroundScene.astro';
 
 interface Props {
   title?: string;
@@ -41,7 +40,6 @@ const {
       <div class="aurora-blob aurora-blob-3"></div>
     </div>
 
-    <BackgroundScene />
     <Navbar />
     <main style="position:relative;z-index:1;">
       <slot />

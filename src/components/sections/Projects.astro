@@ -177,12 +177,14 @@ const projects = [
 
   /* ── Featured card ────────────────────────────────────────── */
   .featured-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-accent);
+    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
+    border: 1px solid rgba(0,113,227,0.15);
     border-radius: var(--radius-lg);
     padding: 36px;
     margin-bottom: 40px;
-    box-shadow: 0 0 40px var(--glow-cyan);
+    box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255,255,255,1);
     position: relative;
     overflow: hidden;
   }
@@ -194,12 +196,12 @@ const projects = [
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo), var(--accent-purple));
+    background: linear-gradient(90deg, var(--accent), rgba(0,113,227,0.4));
   }
 
   .featured-badge {
     font-size: 11px;
-    color: var(--accent-cyan);
+    color: var(--accent);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -277,7 +279,7 @@ const projects = [
     text-decoration: none;
     transition: color 0.2s;
   }
-  .icon-link:hover { color: var(--accent-cyan); }
+  .icon-link:hover { color: var(--accent); }
 
   .card-title {
     font-size: 1rem;
@@ -317,22 +319,24 @@ const projects = [
   }
 
   .link-primary {
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo));
+    background: var(--accent);
     color: #fff;
-    box-shadow: 0 4px 16px var(--glow-cyan);
+    box-shadow: 0 2px 8px rgba(0,113,227,0.3);
   }
 
-  .link-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--glow-cyan); }
+  .link-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,113,227,0.35); }
 
   .link-ghost {
-    background: transparent;
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color: var(--text-secondary);
-    border: 1px solid var(--border);
+    border: 1px solid rgba(0,0,0,0.08);
   }
 
   .link-ghost:hover {
     border-color: var(--border-accent);
-    color: var(--accent-cyan);
+    color: var(--accent);
   }
 
   /* ── Responsive ───────────────────────────────────────────── */

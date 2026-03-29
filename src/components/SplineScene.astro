@@ -34,6 +34,19 @@ const uid = `spline-${Math.random().toString(36).slice(2, 8)}`;
     overflow: hidden;
   }
 
+  /* Mask the "Built with Spline" watermark rendered in the canvas bottom-right */
+  .spline-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 56px;
+    background: var(--spline-mask-color, var(--bg-surface));
+    pointer-events: none;
+    z-index: 3;
+  }
+
   canvas {
     width: 100% !important;
     height: 100% !important;
@@ -56,7 +69,7 @@ const uid = `spline-${Math.random().toString(36).slice(2, 8)}`;
   }
 
   .spline-loader-text {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'SF Mono', ui-monospace, monospace;
     font-size: 11px;
     color: var(--text-muted);
     letter-spacing: 0.1em;
@@ -82,6 +95,8 @@ const uid = `spline-${Math.random().toString(36).slice(2, 8)}`;
           loader.style.opacity = '0';
           setTimeout(() => loader.remove(), 400);
         }
+        // Notify listeners that scene is ready (e.g. for click event binding)
+        c.dispatchEvent(new CustomEvent('spline-ready', { detail: { app }, bubbles: true }));
       } catch {
         if (loader) {
           loader.innerHTML = `<span style="font-size:12px;color:var(--text-muted);font-family:monospace">Scene unavailable</span>`;
