@@ -1,0 +1,99 @@
+---
+/**
+ * SplineScene — renders a Spline 3D scene via @splinetool/runtime (no watermark).
+ *
+ * Usage:
+ *   <SplineScene url="https://prod.spline.design/YOUR_ID/scene.splinecode" height="500px" />
+ *
+ * To get the URL: Open scene in Spline → Export → Web → copy the .splinecode URL
+ */
+
+interface Props {
+  url: string;
+  height?: string;
+  class?: string;
+}
+
+const { url, height = '500px', class: className = '' } = Astro.props;
+const uid = `spline-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<div class={`spline-wrapper ${className}`} style={`height: ${height};`}>
+  <div class="spline-loader" id={`loader-${uid}`}>
+    <div class="spline-loader-ring"></div>
+    <span class="spline-loader-text">Loading scene…</span>
+  </div>
+  <canvas id={uid} data-url={url}></canvas>
+</div>
+
+<style>
+  .spline-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+
+  .spline-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .spline-loader-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+</style>
+
+<script>
+  // Dynamic import keeps Spline out of the main bundle so it doesn't block
+  // the page render or the scroll-reveal animation.
+  async function initSpline() {
+    const { Application } = await import('@splinetool/runtime');
+
+    document.querySelectorAll('canvas[data-url]').forEach(async (canvas) => {
+      const c      = canvas as HTMLCanvasElement;
+      const url    = c.dataset.url!;
+      const loader = c.parentElement?.querySelector('[id^="loader-"]') as HTMLElement | null;
+
+      try {
+        const app = new Application(c);
+        await app.load(url);
+
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 400);
+        }
+      } catch {
+        if (loader) {
+          loader.innerHTML = `<span style="font-size:12px;color:var(--text-muted);font-family:monospace">Scene unavailable</span>`;
+        }
+      }
+    });
+  }
+
+  // Start loading Spline after the page is interactive
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSpline);
+  } else {
+    initSpline();
+  }
+</script>

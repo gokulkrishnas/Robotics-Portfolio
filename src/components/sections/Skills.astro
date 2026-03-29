@@ -1,0 +1,176 @@
+---
+const skillGroups = [
+  {
+    category: 'Robotics & Embedded',
+    icon: '⚙',
+    accent: 'cyan',
+    skills: ['ROS', 'NVIDIA Jetson Nano', 'Path Planning', 'Obstacle Avoidance', 'Object Detection', 'Microcontroller Programming', 'Sensor Integration', 'H-Bridge Drivers', 'Serial Communication', 'Embedded Linux'],
+  },
+  {
+    category: 'Programming',
+    icon: '</> ',
+    accent: 'indigo',
+    skills: ['Python', 'C (embedded)', 'C++ (developing)', 'SQL', 'Bash', 'R', 'JavaScript', 'Git'],
+  },
+  {
+    category: 'Machine Learning & AI',
+    icon: '◈',
+    accent: 'purple',
+    skills: ['Scikit-learn', 'Predictive Analytics', 'NLP', 'LLMs', 'Anomaly Detection', 'Model Optimisation', 'MLOps', 'MLflow'],
+  },
+  {
+    category: 'Cloud & Infrastructure',
+    icon: '△',
+    accent: 'cyan',
+    skills: ['AWS (EC2, Lambda, S3)', 'Google Cloud Platform', 'Docker', 'Ubuntu Linux', 'CI/CD', 'FastAPI', 'NGINX'],
+  },
+  {
+    category: 'Data & Visualisation',
+    icon: '◉',
+    accent: 'indigo',
+    skills: ['Power BI', 'Tableau', 'Looker Studio', 'Streamlit', 'Matplotlib', 'Seaborn', 'Pandas', 'NumPy'],
+  },
+];
+---
+
+<section id="skills" class="section">
+  <div class="glow-orb glow-purple" style="width:400px;height:400px;top:0;right:10%;"></div>
+  <div class="glow-orb glow-cyan"   style="width:300px;height:300px;bottom:10%;left:5%;"></div>
+
+  <div class="container">
+    <div class="skills-header reveal">
+      <p class="section-label">04 — Skills</p>
+      <h2 class="section-title">Technical <span class="gradient-text">toolkit</span></h2>
+      <p class="skills-sub">Core competencies with a focus on robotics and autonomous systems.</p>
+    </div>
+
+    <!-- Robotics featured row -->
+    <div class="featured-skills reveal">
+      <div class="featured-skills-inner">
+        <p class="fs-label font-mono">Primary focus — Robotics stack</p>
+        <div class="fs-tags">
+          {skillGroups[0].skills.map(s => (
+            <span class="fs-tag">{s}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- All skill groups -->
+    <div class="skills-grid">
+      {skillGroups.slice(1).map((group, i) => (
+        <div class={`skill-group card reveal reveal-delay-${(i % 3) + 1}`}>
+          <div class="group-header">
+            <span class={`group-icon accent-${group.accent}`}>{group.icon}</span>
+            <h3 class="group-title">{group.category}</h3>
+          </div>
+          <div class="skill-tags">
+            {group.skills.map(skill => (
+              <span class="skill-tag">{skill}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-header { margin-bottom: 48px; }
+
+  .skills-sub {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-top: 8px;
+  }
+
+  /* ── Featured robotics row ────────────────────────────────── */
+  .featured-skills {
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin-bottom: 32px;
+    box-shadow: 0 0 30px var(--glow-cyan);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-skills::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo));
+  }
+
+  .fs-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .fs-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .fs-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 18px;
+    background: rgba(56,189,248,0.06);
+    border: 1px solid rgba(56,189,248,0.2);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-cyan);
+    transition: all 0.2s ease;
+  }
+
+  .fs-tag:hover {
+    background: rgba(56,189,248,0.12);
+    box-shadow: 0 0 14px var(--glow-cyan);
+  }
+
+  /* ── Skill group grid ─────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .skill-group { padding: 24px; }
+
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .group-icon {
+    font-size: 18px;
+    font-style: normal;
+  }
+
+  .group-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .accent-cyan   { color: var(--accent-cyan); }
+  .accent-indigo { color: var(--accent-indigo); }
+  .accent-purple { color: var(--accent-purple); }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -12,6 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.1"
+    "@splinetool/runtime": "^1.12.73",
+    "@splinetool/viewer": "^1.12.73",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.1",
+    "tailwindcss": "^4.2.2"
   }
 }

@@ -1,0 +1,162 @@
+---
+import SplineScene from '../SplineScene.astro';
+
+/**
+ * SPLINE: Replace with your Rox scene export URL.
+ * Scene: Rox — "Initiating emotional response"
+ */
+const ROX_URL = 'https://prod.spline.design/a38eafa0-2fa5-4630-983f-6940475adf5e/scene.splinecode';
+
+const stats = [
+  { value: '2+',  label: 'Years industry exp.' },
+  { value: '40M+', label: 'Records processed' },
+  { value: '72%',  label: 'MSc Semester 1 (Distinction)' },
+  { value: '1',    label: 'Springer Nature publication' },
+];
+---
+
+<section id="about" class="section">
+  <!-- Background accent -->
+  <div class="glow-orb glow-indigo" style="width:350px;height:350px;top:50%;right:-80px;transform:translateY(-50%);"></div>
+
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Left: Scene panel -->
+      <div class="about-scene reveal">
+        <div class="glass-panel scene-panel">
+          <span class="corner corner-tl"></span>
+          <span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span>
+          <span class="corner corner-br"></span>
+          <SplineScene url={ROX_URL} height="440px" />
+        </div>
+      </div>
+
+      <!-- Right: Text content -->
+      <div class="about-content">
+        <p class="section-label reveal">01 — About me</p>
+        <h2 class="section-title reveal reveal-delay-1">
+          Engineer at the intersection of<br/>
+          <span class="gradient-text">robotics & intelligence</span>
+        </h2>
+
+        <div class="about-body reveal reveal-delay-2">
+          <p>
+            I'm an electronics and software engineer currently completing my
+            <strong>MSc in Data Science</strong> at the University of Surrey (Distinction track),
+            with a foundation in <strong>ECE</strong> and two years of industry experience
+            at Ernst & Young GDS.
+          </p>
+          <p>
+            My work is rooted in robotics — I built an autonomous indoor delivery robot
+            on <strong>NVIDIA Jetson Nano + ROS</strong> for my undergraduate capstone,
+            which led to a <strong>co-authored Springer Nature publication</strong> in 2024.
+          </p>
+          <p>
+            I'm motivated to work in <strong>mobile robotics and autonomous systems</strong>,
+            bringing together embedded systems, real-time perception, and data-driven
+            intelligence to build robots that operate reliably in the real world.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid reveal reveal-delay-3">
+          {stats.map(({ value, label }) => (
+            <div class="stat-card">
+              <span class="stat-value gradient-text">{value}</span>
+              <span class="stat-label">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 72px;
+    align-items: center;
+  }
+
+  /* ── Scene Panel ──────────────────────────────────────────── */
+  .scene-panel {
+    position: relative;
+    padding: 20px;
+  }
+
+  .corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--accent-indigo);
+    border-style: solid;
+    opacity: 0.5;
+  }
+  .corner-tl { top: 10px; left: 10px;  border-width: 1px 0 0 1px; }
+  .corner-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+  .corner-bl { bottom: 10px; left: 10px;  border-width: 0 0 1px 1px; }
+  .corner-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+  /* ── Text ─────────────────────────────────────────────────── */
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .about-body strong { color: var(--text-primary); font-weight: 500; }
+
+  /* ── Stats ────────────────────────────────────────────────── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .stat-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: 0 0 20px var(--glow-cyan);
+  }
+
+  .stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .about-scene { order: 2; }
+    .about-content { order: 1; }
+  }
+</style>

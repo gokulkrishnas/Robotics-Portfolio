@@ -1,0 +1,237 @@
+---
+import SplineScene from '../SplineScene.astro';
+
+/**
+ * SPLINE: Replace with NEXBOT export URL.
+ * Scene: NEXBOT — Robot Character Concept (dark purple, "Get in touch" label)
+ */
+const NEXBOT_URL = 'https://prod.spline.design/615b9422-9985-43f6-8593-d7d7bc3b0be1/scene.splinecode';
+
+const contactLinks = [
+  {
+    label: 'Email',
+    value: 'gokulkrishna30082001@gmail.com',
+    href:  'mailto:gokulkrishna30082001@gmail.com',
+    icon:  'email',
+    accent: 'cyan',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/gokulks01',
+    href:  'https://linkedin.com/in/gokulks01',
+    icon:  'linkedin',
+    accent: 'indigo',
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/gokulkrishnas',
+    href:  'https://github.com/gokulkrishnas',
+    icon:  'github',
+    accent: 'purple',
+  },
+];
+---
+
+<section id="contact" class="section">
+  <div class="glow-orb glow-cyan"   style="width:400px;height:400px;top:0;left:-80px;"></div>
+  <div class="glow-orb glow-purple" style="width:350px;height:350px;bottom:0;right:-60px;"></div>
+
+  <div class="container">
+    <div class="contact-header reveal">
+      <p class="section-label">06 — Contact</p>
+      <h2 class="section-title">Let's <span class="gradient-text">connect</span></h2>
+      <p class="contact-sub">
+        Open to robotics engineering roles, research collaborations, and exciting autonomous systems projects.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Left: links -->
+      <div class="contact-links-col">
+        {contactLinks.map((link, i) => (
+          <a href={link.href} target={link.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener" class={`contact-card card reveal reveal-delay-${i + 1}`}>
+            <div class={`contact-icon-wrap accent-bg-${link.accent}`}>
+              {link.icon === 'email' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class={`accent-${link.accent}`}>
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>
+                </svg>
+              )}
+              {link.icon === 'linkedin' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class={`accent-${link.accent}`}>
+                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/>
+                </svg>
+              )}
+              {link.icon === 'github' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class={`accent-${link.accent}`}>
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.37.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/>
+                </svg>
+              )}
+            </div>
+            <div class="contact-text">
+              <span class={`contact-label-text font-mono accent-${link.accent}`}>{link.label}</span>
+              <span class="contact-value">{link.value}</span>
+            </div>
+            <svg class="contact-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        ))}
+
+        <!-- Location -->
+        <div class="location-note reveal reveal-delay-4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted)">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Guildford, UK · Open to relocation</span>
+        </div>
+      </div>
+
+      <!-- Right: NEXBOT Spline scene -->
+      <div class="contact-scene reveal reveal-delay-2">
+        <div class="glass-panel scene-panel">
+          <span class="corner corner-tl"></span>
+          <span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span>
+          <span class="corner corner-br"></span>
+          <SplineScene url={NEXBOT_URL} height="400px" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer reveal">
+      <p class="font-mono">
+        Built with <span style="color:var(--accent-cyan)">Astro</span> ·
+        Designed by Gokulkrishna S ·
+        <span style="color:var(--text-muted)">{new Date().getFullYear()}</span>
+      </p>
+    </footer>
+  </div>
+</section>
+
+<style>
+  .contact-header { margin-bottom: 56px; }
+
+  .contact-sub {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 480px;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  /* ── Contact cards ────────────────────────────────────────── */
+  .contact-links-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateX(6px);
+  }
+
+  .contact-icon-wrap {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .accent-bg-cyan   { background: rgba(56,189,248,0.08);  border: 1px solid rgba(56,189,248,0.2); }
+  .accent-bg-indigo { background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); }
+  .accent-bg-purple { background: rgba(168,85,247,0.08);  border: 1px solid rgba(168,85,247,0.2); }
+
+  .contact-text { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+
+  .contact-label-text {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .contact-value {
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  .contact-arrow {
+    color: var(--text-muted);
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .contact-card:hover .contact-arrow {
+    transform: translateX(4px);
+    color: var(--accent-cyan);
+  }
+
+  .accent-cyan   { color: var(--accent-cyan); }
+  .accent-indigo { color: var(--accent-indigo); }
+  .accent-purple { color: var(--accent-purple); }
+
+  /* ── Location ─────────────────────────────────────────────── */
+  .location-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-left: 4px;
+    margin-top: 4px;
+  }
+
+  /* ── Scene Panel ──────────────────────────────────────────── */
+  .scene-panel {
+    position: relative;
+    padding: 20px;
+  }
+
+  .corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--accent-purple);
+    border-style: solid;
+    opacity: 0.5;
+  }
+  .corner-tl { top: 10px; left: 10px;  border-width: 1px 0 0 1px; }
+  .corner-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+  .corner-bl { bottom: 10px; left: 10px;  border-width: 0 0 1px 1px; }
+  .corner-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+  /* ── Footer ───────────────────────────────────────────────── */
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-scene { order: -1; }
+  }
+</style>

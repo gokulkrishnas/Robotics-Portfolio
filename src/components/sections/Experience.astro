@@ -1,0 +1,383 @@
+---
+const education = [
+  {
+    degree:      'MSc in Data Science',
+    institution: 'University of Surrey',
+    location:    'Guildford, UK',
+    period:      '2025 – 2026',
+    grade:       'Semester 1: 72% — Distinction',
+    modules:     ['Machine Learning', 'NLP', 'Statistics', 'Cloud Computing', 'Database Systems'],
+  },
+  {
+    degree:      'BTech — Electronics & Communications Engineering',
+    institution: 'APJ Abdul Kalam Technological University',
+    location:    'Kochi, India',
+    period:      '2019 – 2023',
+    grade:       'First Class · CGPA: 7.76/10',
+    modules:     ['Embedded Systems', 'Microprocessors', 'Digital Signal Processing', 'Control Systems'],
+    highlight:   'Capstone: Autonomous indoor delivery robot (Jetson Nano + ROS) — Springer Nature publication',
+  },
+];
+
+const experience = [
+  {
+    role:     'Data Analyst',
+    company:  'Ernst & Young GDS',
+    location: 'India',
+    period:   '2023 – 2025',
+    bullets: [
+      'Automated ETL workflows using Python and SQL, reducing manual processing by 40% across production environments.',
+      'Created Power BI dashboards for 5+ regional teams, improving reporting cycles by ~30% with DAX and Power Query.',
+      'Integrated and analysed 40M+ survey records, linking sentiment analytics with business KPIs for the first time.',
+      'Applied NLP topic modelling on 2M+ chatbot records, boosting project efficiency by 30%.',
+      'Worked extensively in Ubuntu/Linux environments; deployed pipelines to cloud infrastructure.',
+    ],
+    awards: ['EY Spot Award (2025)', 'GDS Highest Performing Team Award (2024)', 'GDS User Recognition (2024)'],
+  },
+];
+
+const embedded = [
+  {
+    role:     'Robotics & Embedded Systems Intern',
+    company:  'Srishti Robotics Pvt. Ltd',
+    location: 'Kochi, India',
+    period:   'Jan 2020',
+    bullets: [
+      'Hands-on training: microcontroller programming, sensor integration, H-bridge motor drivers, serial comms, IoT.',
+    ],
+  },
+  {
+    role:     'IEEE Embedded Systems & IoT Workshop',
+    company:  'RSET IEEE Student Branch',
+    period:   'Oct 2019',
+    bullets: [],
+  },
+  {
+    role:     'Smart Intern — Robotics & Embedded Systems',
+    company:  'Rajagiri School of Engineering',
+    period:   'Oct 2019',
+    bullets: [],
+  },
+];
+---
+
+<section id="experience" class="section">
+  <div class="glow-orb glow-cyan" style="width:350px;height:350px;bottom:10%;right:-80px;"></div>
+
+  <div class="container">
+    <div class="exp-header reveal">
+      <p class="section-label">03 — Education & Experience</p>
+      <h2 class="section-title">The path <span class="gradient-text">so far</span></h2>
+    </div>
+
+    <div class="exp-grid">
+      <!-- LEFT: Education -->
+      <div class="exp-col">
+        <h3 class="col-title reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent-cyan)">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.69 2 6 2s6-.9 6-2v-5"/>
+          </svg>
+          Education
+        </h3>
+
+        <div class="timeline">
+          <div class="timeline-line"></div>
+          {education.map((ed, i) => (
+            <div class={`timeline-item reveal reveal-delay-${i + 1}`}>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content card">
+                <div class="item-header">
+                  <span class="font-mono" style="font-size:11px;color:var(--text-muted)">{ed.period}</span>
+                  <span class="grade-badge">{ed.grade}</span>
+                </div>
+                <h4 class="item-title">{ed.degree}</h4>
+                <p class="item-institution">{ed.institution} · {ed.location}</p>
+
+                {ed.highlight && (
+                  <p class="item-highlight">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="color:var(--accent-cyan);flex-shrink:0">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    {ed.highlight}
+                  </p>
+                )}
+
+                <div class="module-row">
+                  {ed.modules.map(m => <span class="skill-tag">{m}</span>)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- RIGHT: Experience -->
+      <div class="exp-col">
+        <h3 class="col-title reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent-indigo)">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
+          </svg>
+          Professional Experience
+        </h3>
+
+        <div class="timeline">
+          <div class="timeline-line" style="background:linear-gradient(180deg,var(--accent-indigo),transparent)"></div>
+          {experience.map((exp, i) => (
+            <div class={`timeline-item reveal reveal-delay-${i + 1}`}>
+              <div class="timeline-dot" style="background:var(--accent-indigo);box-shadow:0 0 12px var(--accent-indigo)"></div>
+              <div class="timeline-content card">
+                <div class="item-header">
+                  <span class="font-mono" style="font-size:11px;color:var(--text-muted)">{exp.period}</span>
+                </div>
+                <h4 class="item-title">{exp.role}</h4>
+                <p class="item-institution">{exp.company} · {exp.location}</p>
+
+                <ul class="bullet-list">
+                  {exp.bullets.map(b => <li>{b}</li>)}
+                </ul>
+
+                {exp.awards && exp.awards.length > 0 && (
+                  <div class="awards-row">
+                    {exp.awards.map(a => (
+                      <span class="award-badge">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                        {a}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Embedded / internship subsection -->
+        <h3 class="col-title reveal" style="margin-top:40px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent-purple)">
+            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
+          </svg>
+          Embedded & Robotics Training
+        </h3>
+
+        <div class="timeline">
+          <div class="timeline-line" style="background:linear-gradient(180deg,var(--accent-purple),transparent)"></div>
+          {embedded.map((e, i) => (
+            <div class={`timeline-item reveal reveal-delay-${i + 1}`}>
+              <div class="timeline-dot" style="background:var(--accent-purple);box-shadow:0 0 12px var(--accent-purple)"></div>
+              <div class="timeline-content card">
+                <span class="font-mono" style="font-size:11px;color:var(--text-muted)">{e.period}</span>
+                <h4 class="item-title">{e.role}</h4>
+                <p class="item-institution">{e.company}</p>
+                {e.bullets.map(b => <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.6">{b}</p>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Publication highlight -->
+    <div class="publication-banner reveal">
+      <div class="pub-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </div>
+      <div class="pub-content">
+        <span class="font-mono" style="font-size:11px;color:var(--accent-cyan);letter-spacing:0.1em">SPRINGER NATURE · 2024</span>
+        <p class="pub-title">"Development of an Intuitive Autonomous Ground Robot for Indoor Delivery Applications"</p>
+        <p class="pub-sub">Co-authored · Designed and validated an AMR prototype for indoor delivery.</p>
+      </div>
+      <a href="https://link.springer.com" target="_blank" rel="noopener" class="pub-link btn-secondary">
+        View Paper →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-header { margin-bottom: 56px; }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 64px;
+  }
+
+  .col-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+  }
+
+  /* ── Timeline ─────────────────────────────────────────────── */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .timeline-content { flex: 1; padding: 20px 24px; }
+
+  .item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .grade-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-cyan);
+    background: rgba(56,189,248,0.08);
+    border: 1px solid rgba(56,189,248,0.2);
+    padding: 2px 10px;
+    border-radius: 100px;
+  }
+
+  .item-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .item-institution {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  .item-highlight {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: rgba(56,189,248,0.04);
+    border-left: 2px solid var(--accent-cyan);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .module-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .bullet-list li {
+    position: relative;
+    padding-left: 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent-indigo);
+  }
+
+  .awards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #f59e0b;
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.2);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  /* ── Publication ──────────────────────────────────────────── */
+  .publication-banner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    box-shadow: 0 0 30px var(--glow-cyan);
+  }
+
+  .pub-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(56,189,248,0.08);
+    border: 1px solid rgba(56,189,248,0.2);
+    border-radius: 12px;
+    color: var(--accent-cyan);
+  }
+
+  .pub-content { flex: 1; }
+
+  .pub-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 6px 0 4px;
+    line-height: 1.4;
+  }
+
+  .pub-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .pub-link { white-space: nowrap; }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .exp-grid { grid-template-columns: 1fr; gap: 40px; }
+    .publication-banner { flex-direction: column; align-items: flex-start; }
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Gokulkrishna S — Robotics Engineer',
+  description = 'Robotics Engineer specializing in autonomous systems, ROS, and embedded AI. MSc Data Science, University of Surrey.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+
+    <!-- Scroll reveal observer -->
+    <script>
+      function revealEl(el: Element) {
+        (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.transform = 'translateY(0)';
+      }
+
+      function initReveal() {
+        const vh = window.innerHeight;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                (entry.target as HTMLElement).style.opacity = '1';
+                (entry.target as HTMLElement).style.transform = 'translateY(0)';
+                entry.target.classList.remove('below-fold');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top > vh) {
+            // Below the fold — hide and observe
+            el.classList.add('below-fold');
+          }
+          observer.observe(el);
+        });
+      }
+
+      // Runs at DOMContentLoaded — Spline loads separately so this is fast
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReveal);
+      } else {
+        initReveal();
+      }
+    </script>
+  </body>
+</html>
