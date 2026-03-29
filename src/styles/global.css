@@ -88,22 +88,139 @@ h1, h2, h3, h4 {
 .glow-indigo { background: radial-gradient(circle, var(--accent-indigo), transparent 70%); }
 .glow-purple { background: radial-gradient(circle, var(--accent-purple), transparent 70%); }
 
-/* ─── Glass Panel ───────────────────────────────────────────── */
+/* ─── Liquid Glass ──────────────────────────────────────────── */
+/* Core liquid glass mixin — used by navbar, panels, cards       */
 .glass-panel {
-  background: rgba(10, 10, 24, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Liquid shimmer layer — moves on hover */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.glass-panel:hover::before { transform: translateX(100%); }
+
 .glass-panel-accent {
-  background: rgba(10, 10, 24, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-accent);
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.08) 0%,
+    rgba(129, 140, 248, 0.04) 50%,
+    rgba(56, 189, 248, 0.06) 100%
+  );
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
   border-radius: var(--radius-lg);
-  box-shadow: 0 0 40px var(--glow-cyan), inset 0 1px 0 rgba(56,189,248,0.1);
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel-accent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(56, 189, 248, 0.05) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.glass-panel-accent:hover::before { transform: translateX(100%); }
+
+/* ─── Aurora Background Animation ──────────────────────────── */
+/* Subtle animated gradient blobs — pure CSS, no heavy libs     */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0;
+  animation: aurora-float var(--dur, 12s) ease-in-out infinite var(--delay, 0s);
+}
+
+.aurora-blob-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(56,189,248,0.18), transparent 70%);
+  top: -15%; left: -10%;
+  --dur: 14s; --delay: 0s;
+  animation-name: aurora-float-1;
+}
+.aurora-blob-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(129,140,248,0.16), transparent 70%);
+  top: 30%; right: -10%;
+  --dur: 18s; --delay: -4s;
+  animation-name: aurora-float-2;
+}
+.aurora-blob-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(168,85,247,0.12), transparent 70%);
+  bottom: -5%; left: 30%;
+  --dur: 22s; --delay: -8s;
+  animation-name: aurora-float-3;
+}
+
+@keyframes aurora-float-1 {
+  0%   { opacity: 0.7; transform: translate(0, 0) scale(1); }
+  25%  { opacity: 0.9; transform: translate(60px, 40px) scale(1.08); }
+  50%  { opacity: 0.6; transform: translate(20px, 80px) scale(0.95); }
+  75%  { opacity: 0.8; transform: translate(-40px, 30px) scale(1.04); }
+  100% { opacity: 0.7; transform: translate(0, 0) scale(1); }
+}
+@keyframes aurora-float-2 {
+  0%   { opacity: 0.6; transform: translate(0, 0) scale(1); }
+  33%  { opacity: 0.8; transform: translate(-50px, -60px) scale(1.1); }
+  66%  { opacity: 0.5; transform: translate(30px, -30px) scale(0.92); }
+  100% { opacity: 0.6; transform: translate(0, 0) scale(1); }
+}
+@keyframes aurora-float-3 {
+  0%   { opacity: 0.5; transform: translate(0, 0) scale(1); }
+  40%  { opacity: 0.7; transform: translate(-30px, -50px) scale(1.06); }
+  80%  { opacity: 0.4; transform: translate(50px, -20px) scale(0.96); }
+  100% { opacity: 0.5; transform: translate(0, 0) scale(1); }
 }
 
 /* ─── Section Layout ────────────────────────────────────────── */
@@ -166,24 +283,26 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: transparent;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: var(--text-primary);
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 500;
   font-size: 14px;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
   transition: all 0.25s ease;
   text-decoration: none;
-  box-shadow: 3px 3px 8px rgba(0,0,0,0.4), -1px -1px 4px rgba(255,255,255,0.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
 .btn-secondary:hover {
   transform: translateY(-2px);
-  border-color: var(--border-accent);
+  border-color: rgba(56,189,248,0.35);
   color: var(--accent-cyan);
-  box-shadow: 5px 5px 12px rgba(0,0,0,0.5), 0 0 20px var(--glow-cyan);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 20px var(--glow-cyan), inset 0 1px 0 rgba(255,255,255,0.18);
 }
 
 /* ─── Scroll Reveal ─────────────────────────────────────────── */
@@ -260,18 +379,42 @@ h1, h2, h3, h4 {
 
 /* ─── Card ──────────────────────────────────────────────────── */
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.055) 0%,
+    rgba(255, 255, 255, 0.018) 100%
+  );
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: var(--radius-lg);
   padding: 28px;
   transition: all 0.3s ease;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
 }
 
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.03) 50%, transparent 65%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.card:hover::before { transform: translateX(100%); }
+
 .card:hover {
-  border-color: var(--border-accent);
-  background: var(--bg-card-hover);
+  border-color: rgba(56, 189, 248, 0.22);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 30px var(--glow-cyan);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 24px rgba(56, 189, 248, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 /* ─── Timeline ──────────────────────────────────────────────── */

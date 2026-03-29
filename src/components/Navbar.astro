@@ -13,9 +13,28 @@ const navLinks = [
 <nav id="navbar">
   <!-- Logo -->
   <a href="#home" class="nav-logo" aria-label="Home">
-    <span class="logo-bracket">[</span>
-    <span class="logo-text">GK</span>
-    <span class="logo-bracket">]</span>
+    <div class="logo-hex">
+      <svg class="logo-hex-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer hexagon -->
+        <polygon points="22,2 39,11.5 39,32.5 22,42 5,32.5 5,11.5"
+          stroke="url(#hexGrad)" stroke-width="1.5" fill="none"/>
+        <!-- Inner dots — circuit feel -->
+        <circle cx="22" cy="11.5" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
+        <circle cx="39" cy="22" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
+        <circle cx="22" cy="32.5" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
+        <circle cx="5" cy="22" r="1.5" fill="url(#hexGrad)" opacity="0.7"/>
+        <defs>
+          <linearGradient id="hexGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#38bdf8"/>
+            <stop offset="100%" stop-color="#818cf8"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="logo-text-block">
+      <span class="logo-initials">GK</span>
+      <span class="logo-sub">portfolio</span>
+    </div>
   </a>
 
   <!-- Desktop nav -->
@@ -49,7 +68,7 @@ const navLinks = [
 </div>
 
 <style>
-  /* ── Navbar shell ───────────────────────────────────────── */
+  /* ── Navbar shell — liquid glass ───────────────────────── */
   nav {
     position: fixed;
     top: 0;
@@ -61,15 +80,21 @@ const navLinks = [
     align-items: center;
     justify-content: space-between;
     padding: 0 32px;
-    background: rgba(5, 5, 13, 0.75);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--border);
-    /* Perspective for 3D child elements */
-    perspective: 800px;
+    /* Liquid glass */
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(48px) saturate(1.8);
+    -webkit-backdrop-filter: blur(48px) saturate(1.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  /* subtle glow line at bottom */
+  /* gradient glow line at bottom */
   nav::after {
     content: '';
     position: absolute;
@@ -80,31 +105,69 @@ const navLinks = [
     background: linear-gradient(
       90deg,
       transparent,
-      var(--accent-cyan),
-      var(--accent-indigo),
+      rgba(56,189,248,0.5),
+      rgba(129,140,248,0.5),
       transparent
     );
-    opacity: 0.4;
   }
 
-  /* ── Logo ───────────────────────────────────────────────── */
+  /* ── New Logo ───────────────────────────────────────────── */
   .nav-logo {
     text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 2px;
-    /* 3D logo: subtle forward tilt */
-    transform: perspective(400px) rotateX(4deg);
-    transition: transform 0.3s ease;
+    gap: 10px;
+    transition: transform 0.35s ease;
   }
 
-  .nav-logo:hover { transform: perspective(400px) rotateX(0deg) scale(1.05); }
+  .nav-logo:hover { transform: scale(1.04); }
 
-  .logo-bracket { color: var(--accent-cyan); }
-  .logo-text    { color: var(--text-primary); font-size: 16px; }
+  /* Hexagon icon */
+  .logo-hex {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .logo-hex-svg {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+    filter: drop-shadow(0 0 4px rgba(56,189,248,0.3));
+  }
+
+  .nav-logo:hover .logo-hex-svg {
+    transform: rotate(60deg);
+    filter: drop-shadow(0 0 8px rgba(56,189,248,0.6));
+  }
+
+  /* Text block */
+  .logo-text-block {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 2px;
+  }
+
+  .logo-initials {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .logo-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
 
   /* ── Nav link list ──────────────────────────────────────── */
   .nav-links {
@@ -116,31 +179,40 @@ const navLinks = [
     transform-style: preserve-3d;
   }
 
-  /* ── 3D Nav Button ──────────────────────────────────────── */
+  /* ── Liquid Glass Nav Button ────────────────────────────── */
   .nav-btn {
     position: relative;
     display: inline-block;
-    padding: 8px 16px;
+    padding: 7px 16px;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transform-style: preserve-3d;
-    transform: perspective(200px) translateZ(0);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 
-    /* Button face color */
-    background: linear-gradient(160deg, #161628 0%, #0c0c1c 100%);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-
-    /* ── 3D illusion: layered shadows ── */
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    );
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
-      /* bottom-right depth shadow */
-      3px 3px 0px #020208,
-      /* inner top highlight */
-      inset 0 1px 0 rgba(255,255,255,0.07),
-      /* outer glow off */
-      0 0 0 transparent;
+      0 2px 12px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
   }
+
+  /* Shimmer on hover */
+  .nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.08) 50%, transparent 65%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+  .nav-btn:hover::before { transform: translateX(100%); }
 
   .nav-btn-face {
     font-family: 'Space Grotesk', sans-serif;
@@ -153,34 +225,30 @@ const navLinks = [
     z-index: 1;
   }
 
-  /* Hover: lift up, glow */
   .nav-btn:hover {
-    transform: perspective(200px) translateY(-3px) translateZ(4px);
-    border-color: rgba(56,189,248,0.3);
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.28);
     box-shadow:
-      4px 6px 0px #020208,
-      inset 0 1px 0 rgba(255,255,255,0.1),
-      0 0 18px var(--glow-cyan);
+      0 6px 20px rgba(0, 0, 0, 0.3),
+      0 0 16px rgba(56, 189, 248, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
-  .nav-btn:hover .nav-btn-face { color: var(--accent-cyan); }
+  .nav-btn:hover .nav-btn-face { color: var(--text-primary); }
 
-  /* Press */
-  .nav-btn:active {
-    transform: perspective(200px) translateY(1px) translateZ(-2px);
-    box-shadow:
-      1px 2px 0px #020208,
-      inset 0 2px 4px rgba(0,0,0,0.5);
-  }
+  .nav-btn:active { transform: translateY(0); }
 
-  /* Active section indicator */
+  /* Active section */
   .nav-btn.active {
-    border-color: rgba(56,189,248,0.35);
+    background: linear-gradient(
+      135deg,
+      rgba(56, 189, 248, 0.12) 0%,
+      rgba(129, 140, 248, 0.06) 100%
+    );
+    border-color: rgba(56, 189, 248, 0.3);
     box-shadow:
-      3px 3px 0px #020208,
-      inset 0 1px 0 rgba(255,255,255,0.1),
-      0 0 20px var(--glow-cyan),
-      inset 0 0 12px rgba(56,189,248,0.06);
+      0 0 20px rgba(56, 189, 248, 0.1),
+      inset 0 1px 0 rgba(56, 189, 248, 0.2);
   }
 
   .nav-btn.active .nav-btn-face { color: var(--accent-cyan); }
