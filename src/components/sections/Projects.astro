@@ -2,6 +2,7 @@
 const projects = [
   {
     id: 'amr',
+    image: '/robots/amr-demo.png',
     featured: true,
     label: 'Featured · Published Research',
     title: 'Autonomous Indoor Delivery Robot',
@@ -13,6 +14,7 @@ const projects = [
   },
   {
     id: 'docking',
+    image: '/robots/docking-demo.png',
     featured: true,
     label: 'Featured · Robotics',
     title: 'Autonomous Docking System for Charging',
@@ -235,7 +237,7 @@ const projects = [
           <!-- Project visual -->
           <div class="featured-visual">
             <img
-              src={`/robots/${p.id}-demo.jpg`}
+              src={p.image ?? `/robots/${p.id}-demo.jpg`}
               alt={p.title}
               class="featured-demo-img"
               onerror={`this.style.display='none';document.getElementById('fallback-${p.id}').style.display='flex'`}
