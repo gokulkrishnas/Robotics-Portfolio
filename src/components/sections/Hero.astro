@@ -217,6 +217,8 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
     height: 578px;
     /* Clip only the bottom (badge row); sides stay open */
     clip-path: inset(0px -400px 40px -400px);
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   /* Extend canvas 120px to the left so Spline re-renders wider —
