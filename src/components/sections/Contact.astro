@@ -1,11 +1,4 @@
 ---
-import SplineScene from '../SplineScene.astro';
-
-/**
- * SPLINE: Replace with NEXBOT export URL.
- * Scene: NEXBOT — Robot Character Concept (dark purple, "Get in touch" label)
- */
-const NEXBOT_URL = 'https://prod.spline.design/a3dNWL2bf7fxDypq/scene.splinecode';
 
 const contactLinks = [
   {
@@ -45,8 +38,7 @@ const contactLinks = [
       </p>
     </div>
 
-    <div class="contact-grid">
-      <!-- Left: links -->
+    <div class="contact-links-wrap">
       <div class="contact-links-col">
         {contactLinks.map((link, i) => (
           <a href={link.href} target={link.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener" class={`contact-card card reveal reveal-delay-${i + 1}`}>
@@ -86,15 +78,49 @@ const contactLinks = [
         </div>
       </div>
 
-      <!-- Right: NEXBOT Spline scene -->
-      <div class="contact-scene reveal reveal-delay-2">
-        <div class="glass-panel scene-panel">
-          <span class="corner corner-tl"></span>
-          <span class="corner corner-tr"></span>
-          <span class="corner corner-bl"></span>
-          <span class="corner corner-br"></span>
-          <SplineScene url={NEXBOT_URL} height="400px" />
-        </div>
+      <!-- Pixel art robot -->
+      <div class="contact-art reveal">
+        <svg class="pixel-robot" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" style="image-rendering:pixelated">
+          <!-- Antenna -->
+          <rect x="38" y="2" width="4" height="8" fill="currentColor" opacity="0.5"/>
+          <rect x="34" y="8" width="12" height="4" fill="currentColor" opacity="0.5"/>
+          <!-- Head -->
+          <rect x="20" y="14" width="40" height="32" rx="2" fill="currentColor" opacity="0.12"/>
+          <rect x="22" y="16" width="36" height="28" rx="1" fill="currentColor" opacity="0.08"/>
+          <!-- Eyes -->
+          <rect x="28" y="22" width="8" height="8" rx="1" fill="currentColor" opacity="0.55"/>
+          <rect x="44" y="22" width="8" height="8" rx="1" fill="currentColor" opacity="0.55"/>
+          <!-- Eye shine -->
+          <rect x="30" y="24" width="2" height="2" fill="white" opacity="0.8"/>
+          <rect x="46" y="24" width="2" height="2" fill="white" opacity="0.8"/>
+          <!-- Mouth -->
+          <rect x="28" y="34" width="4" height="4" rx="1" fill="currentColor" opacity="0.35"/>
+          <rect x="34" y="36" width="12" height="2" fill="currentColor" opacity="0.35"/>
+          <rect x="48" y="34" width="4" height="4" rx="1" fill="currentColor" opacity="0.35"/>
+          <!-- Neck -->
+          <rect x="34" y="46" width="12" height="6" fill="currentColor" opacity="0.3"/>
+          <!-- Body -->
+          <rect x="16" y="52" width="48" height="32" rx="3" fill="currentColor" opacity="0.1"/>
+          <rect x="18" y="54" width="44" height="28" rx="2" fill="currentColor" opacity="0.08"/>
+          <!-- Chest panel -->
+          <rect x="28" y="58" width="24" height="16" rx="2" fill="currentColor" opacity="0.2"/>
+          <rect x="30" y="60" width="8" height="5" rx="1" fill="currentColor" opacity="0.4"/>
+          <rect x="42" y="60" width="8" height="5" rx="1" fill="currentColor" opacity="0.4"/>
+          <rect x="30" y="67" width="20" height="3" rx="1" fill="currentColor" opacity="0.3"/>
+          <!-- Arms -->
+          <rect x="4" y="52" width="10" height="24" rx="2" fill="currentColor" opacity="0.12"/>
+          <rect x="66" y="52" width="10" height="24" rx="2" fill="currentColor" opacity="0.12"/>
+          <!-- Hands -->
+          <rect x="2" y="74" width="14" height="8" rx="2" fill="currentColor" opacity="0.18"/>
+          <rect x="64" y="74" width="14" height="8" rx="2" fill="currentColor" opacity="0.18"/>
+          <!-- Legs -->
+          <rect x="24" y="84" width="12" height="14" rx="2" fill="currentColor" opacity="0.14"/>
+          <rect x="44" y="84" width="12" height="14" rx="2" fill="currentColor" opacity="0.14"/>
+          <!-- Feet -->
+          <rect x="22" y="96" width="16" height="4" rx="1" fill="currentColor" opacity="0.2"/>
+          <rect x="42" y="96" width="16" height="4" rx="1" fill="currentColor" opacity="0.2"/>
+        </svg>
+        <p class="art-label font-mono">available · open to work</p>
       </div>
     </div>
 
@@ -120,11 +146,11 @@ const contactLinks = [
     margin-top: 8px;
   }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
+  .contact-links-wrap {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 64px;
     margin-bottom: 80px;
   }
 
@@ -133,6 +159,37 @@ const contactLinks = [
     display: flex;
     flex-direction: column;
     gap: 14px;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  /* ── Pixel art panel ──────────────────────────────────────── */
+  .contact-art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .pixel-robot {
+    width: 120px;
+    height: 150px;
+    color: var(--accent);
+    opacity: 0.7;
+    animation: pixel-float 4s ease-in-out infinite;
+  }
+
+  @keyframes pixel-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+  }
+
+  .art-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
   }
 
   .contact-card {
@@ -200,24 +257,6 @@ const contactLinks = [
     margin-top: 4px;
   }
 
-  /* ── Scene Panel ──────────────────────────────────────────── */
-  .scene-panel {
-    position: relative;
-    padding: 20px;
-  }
-
-  .corner {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    border-color: var(--accent);
-    border-style: solid;
-    opacity: 0.4;
-  }
-  .corner-tl { top: 10px; left: 10px;  border-width: 1px 0 0 1px; }
-  .corner-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
-  .corner-bl { bottom: 10px; left: 10px;  border-width: 0 0 1px 1px; }
-  .corner-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
 
   /* ── Footer ───────────────────────────────────────────────── */
   .footer {
@@ -231,19 +270,7 @@ const contactLinks = [
 
   /* ── Responsive ───────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .contact-scene { order: -1; }
+    .contact-links-col { max-width: 100%; }
   }
 </style>
 
-<script>
-  // When the Spline scene in the Contact section is ready,
-  // attach a click handler so the button in the scene triggers the email link.
-  document.getElementById('contact')?.addEventListener('spline-ready', (e: Event) => {
-    const app = (e as CustomEvent).detail?.app;
-    if (!app) return;
-    app.addEventListener('mouseDown', () => {
-      window.location.href = 'mailto:gokulkrishna30082001@gmail.com';
-    });
-  });
-</script>

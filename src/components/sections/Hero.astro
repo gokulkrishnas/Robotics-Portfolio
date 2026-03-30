@@ -7,18 +7,10 @@ import SplineScene from '../SplineScene.astro';
  * Steps: Open in Spline → Export → Web → Copy URL
  * Make sure Background is set to Transparent in scene settings.
  */
-const GENKUB_URL  = 'https://prod.spline.design/URNWsSjOJHXK1sUs/scene.splinecode';
-const HERO_BG_URL = 'https://prod.spline.design/8drWQPA7PfGR9fa7/scene.splinecode';
+const GENKUB_URL = 'https://prod.spline.design/URNWsSjOJHXK1sUs/scene.splinecode';
 ---
 
 <section id="home" class="section hero-section bg-grid">
-  <!-- Landing page Spline background -->
-  <div class="hero-bg-spline" id="hero-bg-wrapper" aria-hidden="true">
-    <canvas id="hero-bg-canvas" data-hero-bg={HERO_BG_URL}></canvas>
-  </div>
-  <!-- Mask the Spline watermark badge rendered inside the canvas -->
-  <div class="spline-badge-mask" aria-hidden="true"></div>
-
   <!-- Subtle glow orbs beneath content -->
   <div class="glow-orb glow-cyan"   style="width:500px;height:500px;top:-100px;left:-100px;"></div>
   <div class="glow-orb glow-indigo" style="width:400px;height:400px;bottom:0;right:0;"></div>
@@ -44,18 +36,20 @@ const HERO_BG_URL = 'https://prod.spline.design/8drWQPA7PfGR9fa7/scene.splinecod
       </p>
 
       <div class="hero-ctas reveal reveal-delay-4">
-        <a href="#projects" class="btn-primary">
-          View Projects
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-        <a href="/cv.pdf" class="btn-secondary" target="_blank" rel="noopener">
-          Download CV
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-          </svg>
-        </a>
+        <div class="glass-btn-wrap">
+          <a href="#projects" class="glass-btn">
+            View Projects
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <div class="glass-btn-shadow"></div>
+        </div>
+        <div class="glass-btn-wrap">
+          <a href="/cv.pdf" class="glass-btn" target="_blank" rel="noopener">
+            Download CV
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          </a>
+          <div class="glass-btn-shadow"></div>
+        </div>
       </div>
 
       <!-- Social links -->
@@ -216,30 +210,6 @@ const HERO_BG_URL = 'https://prod.spline.design/8drWQPA7PfGR9fa7/scene.splinecod
     box-shadow: 0 4px 16px rgba(0,113,227,0.15), inset 0 1px 0 rgba(255,255,255,1);
   }
 
-  /* ── Background Spline scene ──────────────────────────────── */
-  .hero-bg-spline {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 1.8s ease;
-    overflow: hidden;
-  }
-  .hero-bg-spline.loaded { opacity: 0.28; }
-  #hero-bg-canvas { width: 100%; height: 100%; display: block; }
-
-
-  /* Mask watermark badge inside bg canvas */
-  .spline-badge-mask {
-    position: absolute;
-    bottom: 0; right: 0;
-    width: 210px; height: 56px;
-    background: var(--bg-base);
-    z-index: 10;
-    pointer-events: none;
-  }
-
   /* ── Robot scene — frameless ──────────────────────────────── */
   /* Clip container height to hide the badge row at the bottom of the canvas */
   .hero-scene {
@@ -314,26 +284,3 @@ const HERO_BG_URL = 'https://prod.spline.design/8drWQPA7PfGR9fa7/scene.splinecod
   }
 </style>
 
-<script>
-  async function initHeroBg() {
-    const canvas = document.getElementById('hero-bg-canvas') as HTMLCanvasElement | null;
-    if (!canvas) return;
-    const url = canvas.dataset.heroBg;
-    if (!url) return;
-    const wrapper = document.getElementById('hero-bg-wrapper');
-    try {
-      const { Application } = await import('@splinetool/runtime');
-      const app = new Application(canvas);
-      await app.load(url);
-      wrapper?.classList.add('loaded');
-    } catch {
-      // Silently fall back to plain background
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroBg);
-  } else {
-    initHeroBg();
-  }
-</script>
