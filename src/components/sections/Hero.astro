@@ -274,9 +274,14 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
   @media (max-width: 900px) {
     .hero-inner {
       grid-template-columns: 1fr;
-      gap: 48px;
+      gap: 0;
       text-align: center;
+      /* Robot first, then text */
+      grid-template-rows: auto auto;
     }
+
+    .hero-text { order: 2; }
+    .hero-scene { order: 1; }
 
     .hero-label, .hero-title-row, .hero-ctas, .hero-socials {
       justify-content: center;
@@ -285,10 +290,20 @@ const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode
     .hero-bio { margin: 0 auto 36px; }
     .scroll-hint { display: none; }
 
-    /* Reset canvas extension on mobile — centre the robot instead */
+    /* Smaller, centred robot on mobile */
+    .hero-scene {
+      height: 220px;
+      clip-path: inset(0px -400px 56px -400px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     :global(.hero-robot-scene) {
       margin-left: 0 !important;
-      width: 100% !important;
+      width: 220px !important;
+      height: 220px !important;
+      flex-shrink: 0;
     }
   }
 </style>

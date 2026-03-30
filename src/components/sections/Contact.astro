@@ -270,7 +270,12 @@ const contactLinks = [
 
   /* ── Responsive ───────────────────────────────────────────── */
   @media (max-width: 900px) {
+    .contact-links-wrap {
+      flex-direction: column;
+      gap: 32px;
+    }
     .contact-links-col { max-width: 100%; }
+    .contact-art { display: none; }
   }
 </style>
 
