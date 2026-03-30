@@ -28,7 +28,7 @@ const projects = [
     label: 'Cloud · Full Stack',
     title: 'Intelligent Marathon Pace Prediction Platform',
     description: 'Scalable web application delivering personalised marathon pacing recommendations combining performance modelling, course elevation analysis, and weather-aware adjustments. Docker microservices with NGINX gateway and AWS RDS PostgreSQL.',
-    tags: ['Python', 'Docker', 'AWS RDS', 'NGINX', 'REST API', 'GitLab'],
+    tags: ['Python', 'Docker', 'AWS RDS', 'NGINX', 'REST API'],
     links: { github: 'https://github.com/gokulkrishnas' },
     accent: 'indigo',
   },
@@ -38,9 +38,79 @@ const projects = [
     label: 'Machine Learning',
     title: 'Fraud Detection System',
     description: 'Real-time fraud detection pipeline trained on 6.3M+ financial transactions. Applied class balancing, feature engineering, and logistic regression to address extreme data imbalance (0.13% fraud cases). Achieved 95% accuracy and 94% recall.',
-    tags: ['Python', 'Scikit-learn', 'Streamlit', 'MLOps'],
-    links: { github: 'https://github.com/gokulkrishnas' },
+    tags: ['Python', 'Scikit-learn', 'Streamlit', 'Pandas', 'Logistic Regression'],
+    links: { github: 'https://github.com/gokulkrishnas/Fraud-Detection-System' },
     accent: 'indigo',
+  },
+  {
+    id: 'spacex',
+    featured: false,
+    label: 'Machine Learning',
+    title: 'SpaceX Launch Success Prediction',
+    description: 'ML pipeline to predict Falcon 9 first stage landing success. Trained and tuned Logistic Regression, SVM, KNN, and Decision Tree via Grid Search. Decision Tree achieved 94.4% accuracy.',
+    tags: ['Python', 'Scikit-learn', 'Dash', 'Plotly', 'SQLite'],
+    links: { github: 'https://github.com/gokulkrishnas/SpaceX-Launch-Success-Prediction' },
+    accent: 'indigo',
+  },
+  {
+    id: 'auto-sales',
+    featured: false,
+    label: 'Data Visualisation',
+    title: 'Historical Automobile Sales Dashboard',
+    description: 'Python-based interactive dashboard analysing automobile sales during recession periods. Deployed with Plotly Dash for rich, real-time visual exploration.',
+    tags: ['Python', 'Dash', 'Plotly', 'Data Analysis', 'HTML'],
+    links: { github: 'https://github.com/gokulkrishnas/Historical-Automobile-Sales-Dashboard', demo: 'https://historical-automobile-sales-dashboard.onrender.com' },
+    accent: 'cyan',
+  },
+  {
+    id: 'wildfire',
+    featured: false,
+    label: 'Data Visualisation',
+    title: 'Australia Wildfire Analysis Dashboard',
+    description: 'Interactive dashboard analysing Australian wildfire data across different regions and time periods. Deployed as a Plotly Dash application.',
+    tags: ['Python', 'Dash', 'Plotly', 'Data Analysis', 'HTML'],
+    links: { github: 'https://github.com/gokulkrishnas/Australia-Wildfire-Analysis-Dashboard', demo: 'https://australia-wildfire-analysis-dashboard.onrender.com' },
+    accent: 'cyan',
+  },
+  {
+    id: 'rain',
+    featured: false,
+    label: 'Machine Learning',
+    title: 'Rainfall Prediction Classifier',
+    description: 'ML pipeline predicting next-day rainfall from historical Australian weather data. Applied feature engineering, class balancing, and hyperparameter tuning across multiple classifiers.',
+    tags: ['Python', 'Scikit-learn', 'Classification', 'GridSearchCV'],
+    links: { github: 'https://github.com/gokulkrishnas/Rainfall-Prediction-Classifier' },
+    accent: 'indigo',
+  },
+  {
+    id: 'house-sales',
+    featured: false,
+    label: 'Predictive Analytics',
+    title: 'House Sales Predictive Analytics',
+    description: 'ML model analysing King County, USA housing data to predict sale prices. Pipeline approach with feature selection, polynomial transforms, and model evaluation.',
+    tags: ['Python', 'Scikit-learn', 'Regression', 'Pipeline'],
+    links: { github: 'https://github.com/gokulkrishnas/House-Sales-Analysis-USA' },
+    accent: 'indigo',
+  },
+  {
+    id: 'car-price',
+    featured: false,
+    label: 'Predictive Analytics',
+    title: 'Car Price Predictive Analytics',
+    description: 'ML model predicting car prices from vehicle specifications using regression pipelines, feature engineering, and rigorous model evaluation.',
+    tags: ['Python', 'Scikit-learn', 'Regression', 'Pipeline'],
+    links: { github: 'https://github.com/gokulkrishnas/Car-Price-Predictive-Analysis' },
+    accent: 'indigo',
+  },
+  {
+    id: 'cuisine',
+    featured: false,
+    label: 'Machine Learning',
+    title: 'Cuisine Predictive Analytics',
+    description: 'Classifies cuisine type from ingredient lists using predictive ML models. Part of the IBM Data Science Professional Certificate capstone series.',
+    tags: ['Python', 'Scikit-learn', 'Pandas', 'Numpy', 'Classification'],
+    links: { github: 'https://github.com/gokulkrishnas/Data-Science-Professional-IBM-Projects' },
+    accent: 'purple',
   },
   {
     id: 'text-analytics',
@@ -68,19 +138,39 @@ const projects = [
     label: 'GenAI · LLM',
     title: 'OLLAMA Chatbot',
     description: 'Lightweight LLM-powered chatbot using OLLAMA and GROQ with context-aware, low-latency responses. Implemented prompt engineering, text embeddings, and memory context management.',
-    tags: ['LLM', 'OLLAMA', 'GROQ', 'Python', 'Embeddings'],
-    links: { github: 'https://github.com/gokulkrishnas' },
+    tags: ['Ollama LLM', 'Groq', 'AI Integration', 'LLM Deployment'],
+    links: { demo: 'https://gokulkrishna-portfolio.streamlit.app/chatbot' },
     accent: 'purple',
   },
   {
-    id: 'spacex',
+    id: 'research-paper',
+    featured: false,
+    label: 'GenAI · NLP',
+    title: 'Research Paper Summarizer',
+    description: 'OpenAI-powered RAG application that ingests research papers and answers questions about their content using natural language.',
+    tags: ['OpenAI', 'NLP', 'LLM', 'RAG'],
+    links: { demo: 'https://gokulkrishna-portfolio.streamlit.app/document_summarizer' },
+    accent: 'purple',
+  },
+  {
+    id: 'resume-analyzer',
+    featured: false,
+    label: 'GenAI · NLP',
+    title: 'Resume Analyzer',
+    description: 'OpenAI-powered resume analyzer that assesses and refines resumes to align with specific job descriptions using Chroma DB for vector search.',
+    tags: ['OpenAI', 'Chroma DB', 'RAG', 'NLP'],
+    links: { github: 'https://github.com/gokulkrishnas/Resume_Analyser', demo: 'https://gokulkrishna-portfolio.streamlit.app/resume_analyser' },
+    accent: 'purple',
+  },
+  {
+    id: 'iris',
     featured: false,
     label: 'Machine Learning',
-    title: 'SpaceX Launch Success Prediction',
-    description: 'ML pipeline to predict Falcon 9 first stage landing success. Trained and tuned Logistic Regression, SVM, KNN, and Decision Tree via Grid Search. Decision Tree achieved 94.4% accuracy.',
-    tags: ['Python', 'Scikit-learn', 'Dash', 'Plotly', 'SQLite'],
-    links: { github: 'https://github.com/gokulkrishnas' },
-    accent: 'purple',
+    title: 'Iris Flower Predictor',
+    description: 'Iris species classifier using ML to predict flower species from petal and sepal measurements, deployed as an interactive Streamlit app.',
+    tags: ['Python', 'Scikit-learn', 'Streamlit', 'Classification'],
+    links: { github: 'https://github.com/gokulkrishnas/Iris_Prediction_Streamlit', demo: 'https://gokulkrishna-portfolio.streamlit.app/iris_predictor' },
+    accent: 'cyan',
   },
 ];
 ---
@@ -195,6 +285,13 @@ const projects = [
                 <a href={p.links.github} target="_blank" rel="noopener" class="icon-link" aria-label="GitHub">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.37.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.23 1.84 1.23 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0z"/>
+                  </svg>
+                </a>
+              )}
+              {p.links.demo && (
+                <a href={p.links.demo} target="_blank" rel="noopener" class="icon-link" aria-label="Live Demo">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
                   </svg>
                 </a>
               )}

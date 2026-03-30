@@ -415,24 +415,72 @@ h1, h2, h3, h4 {
     inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
-/* ─── Skill Tag ─────────────────────────────────────────────── */
+/* ─── Skill Tag — liquid glass pill ────────────────────────── */
 .skill-tag {
   display: inline-flex;
   align-items: center;
   padding: 5px 14px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, rgba(255,255,255,0.78), rgba(255,255,255,0.5));
+  border: 1px solid rgba(255,255,255,0.75);
   border-radius: 100px;
   font-family: 'SF Mono', ui-monospace, monospace;
   font-size: 11px;
   color: var(--text-secondary);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.07);
   transition: all 0.2s ease;
 }
 
 .skill-tag:hover {
-  background: rgba(0, 113, 227, 0.06);
-  border-color: rgba(0, 113, 227, 0.2);
+  background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(0,113,227,0.06));
+  border-color: rgba(0,113,227,0.2);
   color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 2px 8px rgba(0,113,227,0.12);
+}
+
+/* Coloured glass variants — Skills section groups */
+.skill-tag-cyan {
+  background: linear-gradient(135deg, rgba(255,255,255,0.76), rgba(0,113,227,0.07));
+  border-color: rgba(0,113,227,0.26);
+  color: #004aad;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 5px rgba(0,113,227,0.12);
+}
+.skill-tag-cyan:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(0,113,227,0.13));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 2px 12px rgba(0,113,227,0.2);
+  border-color: rgba(0,113,227,0.36);
+  color: #003a8c;
+  transform: translateY(-1px);
+}
+
+.skill-tag-indigo {
+  background: linear-gradient(135deg, rgba(255,255,255,0.76), rgba(88,86,214,0.07));
+  border-color: rgba(88,86,214,0.24);
+  color: #3433a0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 5px rgba(88,86,214,0.1);
+}
+.skill-tag-indigo:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(88,86,214,0.13));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 2px 12px rgba(88,86,214,0.18);
+  border-color: rgba(88,86,214,0.34);
+  color: #27268a;
+  transform: translateY(-1px);
+}
+
+.skill-tag-purple {
+  background: linear-gradient(135deg, rgba(255,255,255,0.76), rgba(155,89,182,0.07));
+  border-color: rgba(155,89,182,0.22);
+  color: #7b3f9e;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 5px rgba(155,89,182,0.1);
+}
+.skill-tag-purple:hover {
+  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(155,89,182,0.13));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 2px 12px rgba(155,89,182,0.18);
+  border-color: rgba(155,89,182,0.32);
+  color: #622d80;
+  transform: translateY(-1px);
 }
 
 /* ─── Glow Orbs (light — very subtle) ──────────────────────── */
@@ -473,7 +521,7 @@ div[id*="spline-watermark"] {
   pointer-events: none !important;
 }
 
-/* ─── Aurora (light — subtle ambient animation) ────────────── */
+/* ─── Aurora — Subtle horizontal colour waves ───────────────── */
 .aurora-bg {
   position: fixed;
   inset: 0;
@@ -485,36 +533,48 @@ div[id*="spline-watermark"] {
 .aurora-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.55;
-  animation: aurora-drift 14s ease-in-out infinite;
+  filter: blur(70px);
+  pointer-events: none;
 }
 
+/* Three wide flat ellipses at different vertical positions
+   drift left-to-right at different speeds — creates a flowing wave */
 .aurora-blob-1 {
-  width: 640px; height: 640px;
-  background: radial-gradient(circle, rgba(0,113,227,0.10), transparent 70%);
-  top: -160px; left: -120px;
-  animation-delay: 0s;
+  width: 130%; height: 220px;
+  background: radial-gradient(ellipse, rgba(0,113,227,0.06), transparent 70%);
+  top: 22%; left: -15%;
+  animation: wave-a 14s ease-in-out infinite;
 }
 
 .aurora-blob-2 {
-  width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(0,113,227,0.07), transparent 70%);
-  top: 35%; right: -110px;
-  animation-delay: -5s;
+  width: 120%; height: 200px;
+  background: radial-gradient(ellipse, rgba(0,113,227,0.045), transparent 70%);
+  top: 52%; left: -5%;
+  animation: wave-b 18s ease-in-out infinite;
+  animation-delay: -6s;
 }
 
 .aurora-blob-3 {
-  width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(110,110,115,0.06), transparent 70%);
-  bottom: -120px; left: 32%;
-  animation-delay: -9s;
+  width: 110%; height: 180px;
+  background: radial-gradient(ellipse, rgba(0,113,227,0.038), transparent 70%);
+  top: 75%; left: -10%;
+  animation: wave-c 22s ease-in-out infinite;
+  animation-delay: -11s;
 }
 
-@keyframes aurora-drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(28px, -18px) scale(1.04); }
-  66%       { transform: translate(-18px, 28px) scale(0.96); }
+@keyframes wave-a {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50%       { transform: translateX(12%) scaleY(0.85); }
+}
+
+@keyframes wave-b {
+  0%, 100% { transform: translateX(4%) scaleY(1); }
+  50%       { transform: translateX(-8%) scaleY(0.9); }
+}
+
+@keyframes wave-c {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50%       { transform: translateX(10%) scaleY(0.95); }
 }
 
 /* ─── Projects Modal ────────────────────────────────────────── */
@@ -597,6 +657,84 @@ div[id*="spline-watermark"] {
 }
 @media (max-width: 1024px) and (min-width: 769px) {
   #projects-modal .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ─── Certifications Modal ──────────────────────────────────── */
+#certs-modal {
+  position: fixed !important;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#certs-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+#certs-modal .certs-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#certs-modal .certs-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 94vw);
+  max-height: 82vh;
+  overflow-y: auto;
+  background: linear-gradient(145deg, rgba(255,255,255,0.94), rgba(245,245,247,0.9));
+  backdrop-filter: blur(32px) saturate(1.8);
+  -webkit-backdrop-filter: blur(32px) saturate(1.8);
+  border: 1px solid rgba(255,255,255,0.9);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,1);
+  padding: 32px;
+  transform: translateY(24px);
+  transition: transform 0.35s cubic-bezier(0.25,1,0.5,1);
+}
+#certs-modal.open .certs-modal-panel { transform: translateY(0); }
+#certs-modal .modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+#certs-modal .modal-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+#certs-modal .modal-close {
+  all: unset;
+  cursor: pointer;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  transition: background 0.2s;
+  pointer-events: auto;
+}
+#certs-modal .modal-close:hover { background: rgba(0,0,0,0.1); color: var(--text-primary); }
+#certs-modal .certs-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  #certs-modal .certs-modal-grid { grid-template-columns: 1fr; }
+  #certs-modal .certs-modal-panel { padding: 20px; }
+}
+@media (max-width: 1024px) and (min-width: 769px) {
+  #certs-modal .certs-modal-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ─── Timeline ──────────────────────────────────────────────── */

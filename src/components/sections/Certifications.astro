@@ -1,54 +1,79 @@
 ---
-const certifications = [
+const featured = [
   {
-    title:   'IBM Data Science Professional Certificate',
-    issuer:  'IBM / Coursera',
-    desc:    '10-course program covering Python, SQL, Machine Learning, and Data Visualisation.',
-    accent:  'cyan',
-    icon:    'cert',
+    title:  'IBM Data Science Professional Certificate',
+    issuer: 'IBM / Coursera',
+    date:   'May 2025',
+    desc:   '10-course specialisation covering Python, SQL, Machine Learning, Data Visualisation, and AI development.',
+    href:   'https://www.coursera.org/account/accomplishments/specialization/12MDKX2JTZM0',
+    accent: 'cyan',
+    icon:   'cert',
   },
   {
-    title:   'IBM Generative AI (Advanced)',
-    issuer:  'IBM / Coursera',
-    desc:    'Advanced course on Generative AI, data modelling, and visualisation.',
-    accent:  'indigo',
-    icon:    'ai',
+    title:  'Data Integration Silver Badge',
+    issuer: 'Ernst & Young',
+    date:   'Feb 2025',
+    desc:   'Advanced data integration and ETL pipeline development, certified by EY GDS.',
+    href:   'https://www.credly.com/badges/67ac641d-a563-419c-846b-91a00c62f229/public_url',
+    accent: 'purple',
+    icon:   'badge',
   },
   {
-    title:   'Google Cloud Skill Badges',
-    issuer:  'Google Cloud',
-    desc:    'Prompt Design in Vertex AI · Build GenAI Apps with Gemini & Imagen · Develop GenAI Apps with Streamlit.',
-    accent:  'cyan',
-    icon:    'cloud',
+    title:  'Data Visualization Silver Badge',
+    issuer: 'Ernst & Young',
+    date:   'Aug 2024',
+    desc:   'Advanced data visualisation and business storytelling certified by EY GDS.',
+    href:   'https://www.credly.com/badges/cf506e0b-ca4a-428e-8740-092a3920f3c2/public_url',
+    accent: 'purple',
+    icon:   'badge',
   },
   {
-    title:   'EY Analytics Learning — Bronze & Silver',
-    issuer:  'Ernst & Young',
-    desc:    'Data Science, Data Visualisation, and Data Integration certifications.',
-    accent:  'purple',
-    icon:    'badge',
+    title:  'Data Science Bronze Badge',
+    issuer: 'Ernst & Young',
+    date:   'Mar 2024',
+    desc:   'Foundational data science skills and analytics competencies certified by EY GDS.',
+    href:   'https://www.credly.com/badges/899f18aa-dc3e-46cb-bac9-703417cb6324/public_url',
+    accent: 'purple',
+    icon:   'badge',
   },
   {
-    title:   'Srishti Robotics Internship Certificate',
-    issuer:  'Srishti Robotics Pvt. Ltd',
-    desc:    'Microcontroller Programming, Sensor Integration, Serial Communication, IoT.',
-    accent:  'cyan',
-    icon:    'robot',
+    title:  'Srishti Robotics Internship Certificate',
+    issuer: 'Srishti Robotics Pvt. Ltd',
+    date:   '',
+    desc:   'Microcontroller programming, sensor integration, serial communication, and IoT systems.',
+    href:   '',
+    accent: 'cyan',
+    icon:   'robot',
   },
   {
-    title:   'IEEE Embedded Systems & IoT Workshop',
-    issuer:  'RSET IEEE Student Branch',
-    desc:    'Hands-on embedded systems and IoT workshop training.',
-    accent:  'indigo',
-    icon:    'badge',
+    title:  'IEEE Embedded Systems & IoT Workshop',
+    issuer: 'RSET IEEE Student Branch',
+    date:   '',
+    desc:   'Hands-on embedded systems and IoT workshop covering hardware and firmware development.',
+    href:   '',
+    accent: 'indigo',
+    icon:   'badge',
   },
+];
+
+const extra = [
+  { title: 'Gemini Multimodality and Multimodal RAG',         issuer: 'Google Cloud', date: 'May 2025', href: 'https://www.cloudskillsboost.google/public_profiles/3ec1b24b-61eb-49dc-b4ad-f9c50ae0973e/badges/15626389', accent: 'cyan',   icon: 'ai' },
+  { title: 'Develop GenAI Apps with Gemini & Streamlit',      issuer: 'Google Cloud', date: 'Apr 2025', href: 'https://www.cloudskillsboost.google/public_profiles/3ec1b24b-61eb-49dc-b4ad-f9c50ae0973e/badges/15279106', accent: 'cyan',   icon: 'ai' },
+  { title: 'Prompt Design in Vertex AI',                      issuer: 'Google Cloud', date: 'Apr 2025', href: 'https://www.cloudskillsboost.google/public_profiles/3ec1b24b-61eb-49dc-b4ad-f9c50ae0973e/badges/15036470', accent: 'cyan',   icon: 'cloud' },
+  { title: 'AI Apps with Gemini and Imagen',                  issuer: 'Google Cloud', date: 'Apr 2025', href: 'https://www.cloudskillsboost.google/public_profiles/3ec1b24b-61eb-49dc-b4ad-f9c50ae0973e/badges/15038578', accent: 'cyan',   icon: 'ai' },
+  { title: 'Data Visualization with Python',                  issuer: 'IBM / Coursera', date: 'Apr 2025', href: 'https://www.coursera.org/account/accomplishments/verify/P8E54EXXVIRH', accent: 'indigo', icon: 'cert' },
+  { title: 'Machine Learning with Python',                    issuer: 'IBM / Coursera', date: 'Apr 2025', href: 'https://www.coursera.org/account/accomplishments/verify/YRT5ANRLQP3P', accent: 'indigo', icon: 'cert' },
+  { title: 'Databases and SQL for Data Science',              issuer: 'IBM / Coursera', date: 'Mar 2025', href: 'https://www.coursera.org/account/accomplishments/verify/76SCQ9SCHDYA', accent: 'indigo', icon: 'cert' },
+  { title: 'Data Analysis with Python',                       issuer: 'IBM / Coursera', date: 'Mar 2025', href: 'https://www.coursera.org/account/accomplishments/records/L0M4U2EY9A8K', accent: 'indigo', icon: 'cert' },
+  { title: 'Data Science Methodology',                        issuer: 'IBM / Coursera', date: 'Feb 2025', href: 'https://www.coursera.org/account/accomplishments/verify/JGXC4WA2TTJE', accent: 'indigo', icon: 'cert' },
+  { title: 'Python for Data Science, AI & Development',       issuer: 'IBM / Coursera', date: 'Feb 2025', href: 'https://www.coursera.org/account/accomplishments/verify/6O2ANEDZJQ9B', accent: 'indigo', icon: 'cert' },
 ];
 
 const iconPaths: Record<string, string> = {
   cert:  'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z',
   ai:    'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
   cloud: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z',
-  badge: 'M12 15l-4-4 1.5-1.5L12 12l6.5-6.5L20 7l-8 8z M5 20v-2a7 7 0 0114 0v2',
+  badge: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   robot: 'M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18',
 };
 ---
@@ -62,24 +87,77 @@ const iconPaths: Record<string, string> = {
       <h2 class="section-title">Credentials & <span class="gradient-text">training</span></h2>
     </div>
 
+    <!-- Featured certifications -->
     <div class="certs-grid">
-      {certifications.map((cert, i) => (
-        <div class={`cert-card card reveal reveal-delay-${(i % 3) + 1}`}>
-          <div class={`cert-icon-wrap accent-bg-${cert.accent}`}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class={`accent-${cert.accent}`}>
-              <path d={iconPaths[cert.icon]} stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+      {featured.map((cert, i) => {
+        const inner = (
+          <div class={`cert-card card reveal reveal-delay-${(i % 3) + 1}`}>
+            <div class={`cert-icon-wrap accent-bg-${cert.accent}`}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class={`accent-${cert.accent}`}>
+                <path d={iconPaths[cert.icon]} stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cert-body">
+              <h3 class="cert-title">{cert.title}</h3>
+              <div class="cert-meta">
+                <p class={`cert-issuer accent-${cert.accent}`}>{cert.issuer}</p>
+                {cert.date && <span class="cert-date font-mono">{cert.date}</span>}
+              </div>
+              <p class="cert-desc">{cert.desc}</p>
+            </div>
           </div>
-          <div class="cert-body">
-            <h3 class="cert-title">{cert.title}</h3>
-            <p class={`cert-issuer accent-${cert.accent}`}>{cert.issuer}</p>
-            <p class="cert-desc">{cert.desc}</p>
-          </div>
-        </div>
-      ))}
+        );
+        return cert.href
+          ? <a href={cert.href} target="_blank" rel="noopener" class="cert-link">{inner}</a>
+          : inner;
+      })}
+    </div>
+
+    <!-- Show More button -->
+    <div class="show-more-wrap reveal">
+      <div class="glass-btn-wrap">
+        <button class="glass-btn" id="show-certs-btn">
+          Show More Certifications
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="glass-btn-shadow"></div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- Certifications modal -->
+<div class="certs-modal" id="certs-modal" aria-hidden="true">
+  <div class="certs-modal-backdrop" id="certs-backdrop"></div>
+  <div class="certs-modal-panel">
+    <div class="modal-header">
+      <h3 class="modal-title">All Certifications</h3>
+      <button class="modal-close" id="certs-close" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="certs-modal-grid">
+      {extra.map((cert, i) => (
+        <a href={cert.href} target="_blank" rel="noopener" class="cert-link">
+          <div class={`cert-card card`}>
+            <div class={`cert-icon-wrap accent-bg-${cert.accent}`}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class={`accent-${cert.accent}`}>
+                <path d={iconPaths[cert.icon]} stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="cert-body">
+              <h3 class="cert-title">{cert.title}</h3>
+              <div class="cert-meta">
+                <p class={`cert-issuer accent-${cert.accent}`}>{cert.issuer}</p>
+                {cert.date && <span class="cert-date font-mono">{cert.date}</span>}
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
 
 <style>
   .certs-header { margin-bottom: 48px; }
@@ -90,11 +168,18 @@ const iconPaths: Record<string, string> = {
     gap: 20px;
   }
 
+  .cert-link {
+    text-decoration: none;
+    display: block;
+  }
+
   .cert-card {
     display: flex;
-    gap: 18px;
+    gap: 16px;
     align-items: flex-start;
     padding: 22px;
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .cert-icon-wrap {
@@ -107,25 +192,38 @@ const iconPaths: Record<string, string> = {
     justify-content: center;
   }
 
-  .accent-bg-cyan   { background: rgba(0,113,227,0.06);  border: 1px solid rgba(0,113,227,0.18); }
-  .accent-bg-indigo { background: rgba(0,113,227,0.05);  border: 1px solid rgba(0,113,227,0.15); }
-  .accent-bg-purple { background: rgba(110,110,115,0.06); border: 1px solid rgba(110,110,115,0.18); }
+  .accent-bg-cyan   { background: rgba(0,113,227,0.06);   border: 1px solid rgba(0,113,227,0.18); }
+  .accent-bg-indigo { background: rgba(88,86,214,0.06);   border: 1px solid rgba(88,86,214,0.16); }
+  .accent-bg-purple { background: rgba(155,89,182,0.06);  border: 1px solid rgba(155,89,182,0.18); }
 
-  .cert-body { flex: 1; }
+  .cert-body { flex: 1; min-width: 0; }
 
   .cert-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 4px;
-    line-height: 1.3;
+    margin-bottom: 6px;
+    line-height: 1.35;
+  }
+
+  .cert-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
   }
 
   .cert-issuer {
     font-family: 'SF Mono', ui-monospace, monospace;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.05em;
-    margin-bottom: 8px;
+  }
+
+  .cert-date {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
   }
 
   .cert-desc {
@@ -135,9 +233,44 @@ const iconPaths: Record<string, string> = {
   }
 
   .accent-cyan   { color: var(--accent-cyan); }
-  .accent-indigo { color: var(--accent-indigo); }
-  .accent-purple { color: var(--accent-purple); }
+  .accent-indigo { color: #5856d6; }
+  .accent-purple { color: #9b59b6; }
+
+  /* ── Show More ────────────────────────────────────────────── */
+  .show-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  /* ── Modal card (compact) ─────────────────────────────────── */
+  #certs-modal .cert-card {
+    padding: 18px;
+  }
 
   @media (max-width: 1024px) { .certs-grid { grid-template-columns: repeat(2,1fr); } }
   @media (max-width: 640px)  { .certs-grid { grid-template-columns: 1fr; } }
 </style>
+
+<script>
+  const modal    = document.getElementById('certs-modal');
+  const openBtn  = document.getElementById('show-certs-btn');
+  const closeBtn = document.getElementById('certs-close');
+  const backdrop = document.getElementById('certs-backdrop');
+
+  function openModal() {
+    modal?.classList.add('open');
+    modal?.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal?.classList.remove('open');
+    modal?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+</script>
