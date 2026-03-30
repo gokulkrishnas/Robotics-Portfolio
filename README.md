@@ -2,7 +2,7 @@
 
 Personal portfolio website for Gokulkrishna S, Robotics Engineer and MSc Data Science student at the University of Surrey.
 
-**Live site:** [gokulkrishnas.github.io](https://gokulkrishnas.github.io) *(coming soon)*
+**Live site:** [gokulkrishnas.github.io](https://gokulkrishnas.github.io)
 
 ---
 
