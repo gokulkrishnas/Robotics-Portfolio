@@ -7,7 +7,7 @@ import SplineScene from '../SplineScene.astro';
  * Steps: Open in Spline → Export → Web → Copy URL
  * Make sure Background is set to Transparent in scene settings.
  */
-const GENKUB_URL = 'https://prod.spline.design/URNWsSjOJHXK1sUs/scene.splinecode';
+const GENKUB_URL = 'https://prod.spline.design/cYwcNQb9pbCCdeK4/scene.splinecode';
 ---
 
 <section id="home" class="section hero-section bg-grid">
@@ -211,24 +211,27 @@ const GENKUB_URL = 'https://prod.spline.design/URNWsSjOJHXK1sUs/scene.splinecode
   }
 
   /* ── Robot scene — frameless ──────────────────────────────── */
-  /* Clip container height to hide the badge row at the bottom of the canvas */
   .hero-scene {
     position: relative;
-    overflow: hidden;
-    height: 578px; /* 640px canvas - 62px badge row */
+    overflow: visible;
+    height: 578px;
+    /* Clip only the bottom (badge row); sides stay open */
+    clip-path: inset(0px -400px 40px -400px);
   }
 
+  /* Extend canvas 120px to the left so Spline re-renders wider —
+     this gives the waving arm room and shifts the robot visually right */
   :global(.hero-robot-scene) {
     border-radius: 0 !important;
     background: transparent;
+    margin-left: -120px !important;
+    width: calc(100% + 120px) !important;
   }
   :global(.hero-robot-scene canvas) {
     border-radius: 0 !important;
-    /* Soft radial fade to blend robot edges with background */
-    -webkit-mask-image: radial-gradient(ellipse 92% 92% at 50% 46%, black 52%, transparent 100%);
-    mask-image: radial-gradient(ellipse 92% 92% at 50% 46%, black 52%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
   }
-  /* No solid mask needed — container clips badge area */
   :global(.hero-robot-scene::after) {
     display: none !important;
   }
@@ -281,6 +284,12 @@ const GENKUB_URL = 'https://prod.spline.design/URNWsSjOJHXK1sUs/scene.splinecode
 
     .hero-bio { margin: 0 auto 36px; }
     .scroll-hint { display: none; }
+
+    /* Reset canvas extension on mobile — centre the robot instead */
+    :global(.hero-robot-scene) {
+      margin-left: 0 !important;
+      width: 100% !important;
+    }
   }
 </style>
 

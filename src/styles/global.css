@@ -521,60 +521,16 @@ div[id*="spline-watermark"] {
   pointer-events: none !important;
 }
 
-/* ─── Aurora — Subtle horizontal colour waves ───────────────── */
-.aurora-bg {
+/* ─── Robot doodle background ───────────────────────────────── */
+.liquid-glass-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
-}
-
-.aurora-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  pointer-events: none;
-}
-
-/* Three wide flat ellipses at different vertical positions
-   drift left-to-right at different speeds — creates a flowing wave */
-.aurora-blob-1 {
-  width: 130%; height: 220px;
-  background: radial-gradient(ellipse, rgba(0,113,227,0.06), transparent 70%);
-  top: 22%; left: -15%;
-  animation: wave-a 14s ease-in-out infinite;
-}
-
-.aurora-blob-2 {
-  width: 120%; height: 200px;
-  background: radial-gradient(ellipse, rgba(0,113,227,0.045), transparent 70%);
-  top: 52%; left: -5%;
-  animation: wave-b 18s ease-in-out infinite;
-  animation-delay: -6s;
-}
-
-.aurora-blob-3 {
-  width: 110%; height: 180px;
-  background: radial-gradient(ellipse, rgba(0,113,227,0.038), transparent 70%);
-  top: 75%; left: -10%;
-  animation: wave-c 22s ease-in-out infinite;
-  animation-delay: -11s;
-}
-
-@keyframes wave-a {
-  0%, 100% { transform: translateX(0) scaleY(1); }
-  50%       { transform: translateX(12%) scaleY(0.85); }
-}
-
-@keyframes wave-b {
-  0%, 100% { transform: translateX(4%) scaleY(1); }
-  50%       { transform: translateX(-8%) scaleY(0.9); }
-}
-
-@keyframes wave-c {
-  0%, 100% { transform: translateX(0) scaleY(1); }
-  50%       { transform: translateX(10%) scaleY(0.95); }
+  background-color: #ffffff;
+  background-image: url('/robot-doodles.svg');
+  background-size: 480px 480px;
+  background-repeat: repeat;
 }
 
 /* ─── Projects Modal ────────────────────────────────────────── */
