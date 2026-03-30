@@ -1,43 +1,88 @@
-# Astro Starter Kit: Minimal
+# Gokulkrishna S — Robotics Portfolio
+
+Personal portfolio website for Gokulkrishna S, Robotics Engineer and MSc Data Science student at the University of Surrey.
+
+**Live site:** [gokulkrishnas.github.io](https://gokulkrishnas.github.io) *(coming soon)*
+
+---
+
+## Tech Stack
+
+- **Framework:** [Astro](https://astro.build) v6
+- **Styling:** Tailwind CSS + custom CSS (Apple-inspired light theme)
+- **3D Scenes:** Spline (`@splinetool/runtime`) — Hero section
+- **Language:** TypeScript
+
+## Features
+
+- Single-page scroll with smooth section navigation
+- Glass morphism UI with dot-grid background
+- Custom glass button system (conic-border gradient + animated shine)
+- Responsive across desktop, tablet, and mobile
+- Auto-populating robot image gallery — drop images into `src/assets/robots/`
+- "Show More Projects" modal for non-featured projects
+- Pixel art robot in Contact section
+
+## Sections
+
+| Section | Description |
+|---|---|
+| Home | Hero with Spline 3D robot scene |
+| About | Bio, stats, profile photo |
+| Projects | 2 featured robotics projects + modal for additional work |
+| Experience | Timeline of roles at EY GDS and university |
+| Skills | Robotics, ML, cloud, and data stack |
+| Gallery | Auto-loaded robot photo gallery |
+| Certifications | Professional certifications |
+| Contact | Email, LinkedIn, GitHub links |
+
+## Getting Started
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # Production build → ./dist/
+npm run preview    # Preview production build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Adding Content
 
-## 🚀 Project Structure
+**Robot gallery images** — Drop `.jpg`, `.png`, or `.webp` files into `src/assets/robots/`. They appear automatically on rebuild.
 
-Inside of your Astro project, you'll see the following folders and files:
+**Profile photo** — Place `profile.jpg` in the `public/` directory.
 
-```text
+**CV** — Place `cv.pdf` in the `public/` directory for the Download CV button.
+
+**Project links** — Update `src/components/sections/Projects.astro` to add real URLs to the `moreInfo` and `paper` fields.
+
+## Project Structure
+
+```
 /
 ├── public/
+│   ├── favicon.svg
+│   ├── profile.jpg       ← add your photo here
+│   └── cv.pdf            ← add your CV here
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── assets/
+│   │   └── robots/       ← drop robot images here
+│   ├── components/
+│   │   ├── Navbar.astro
+│   │   ├── SplineScene.astro
+│   │   └── sections/
+│   │       ├── Hero.astro
+│   │       ├── About.astro
+│   │       ├── Projects.astro
+│   │       ├── Experience.astro
+│   │       ├── Skills.astro
+│   │       ├── RobotGallery.astro
+│   │       ├── Certifications.astro
+│   │       └── Contact.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+│       └── global.css
 └── package.json
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
